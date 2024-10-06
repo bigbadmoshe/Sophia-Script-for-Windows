@@ -24,9 +24,7 @@
 	irm script.sophi.app -useb | iex
 
 	.NOTES
-	Supported Windows 10 version
-	Version: 1809
-	Edition: Enterprise LTSC 2019
+	Supported Windows 10 Enterprise LTSC 2019
 	Architecture: x64
 
 	.NOTES

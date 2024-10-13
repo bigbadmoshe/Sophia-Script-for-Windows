@@ -223,14 +223,10 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 		"WinterOS Tweaker"  = "$env:SystemRoot\WinterOS*"
 		# https://github.com/ThePCDuke/WinCry
 		WinCry              = "$env:SystemRoot\TempCleaner.exe"
-		# https://hone.gg
-		Hone                = "$env:LOCALAPPDATA\Programs\Hone\Hone.exe"
 		# https://www.youtube.com/watch?v=5NBqbUUB1Pk
 		WinClean             = "$env:ProgramFiles\WinClean Plus Apps"
 		# https://github.com/Atlas-OS/Atlas
 		AtlasOS              = "$env:SystemRoot\AtlasModules"
-		# https://www.gearupbooster.com
-		"GearUP Booster"     = "${env:ProgramFiles(x86)}\GearUPBooster"
 	}
 	foreach ($Tweaker in $Tweakers.Keys)
 	{
@@ -578,9 +574,23 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 	}
 
 	# Detect Windows build version
+	if ((Get-WindowsEdition -Online).Edition -notmatch "EnterpriseS")
+	{
+		Write-Information -MessageData "" -InformationAction Continue
+		Write-Warning -Message $Localization.UnsupportedOSBuild
+		Write-Information -MessageData "" -InformationAction Continue
+
+		Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
+		Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
+		Write-Verbose -Message "https://github.com/farag2/Sophia-Script-for-Windows#system-requirements" -Verbose
+
+		exit
+	}
+
+	# Detect Windows build version
 	switch ((Get-CimInstance -ClassName CIM_OperatingSystem).BuildNumber)
 	{
-		{$_ -lt 22631}
+		{$_ -ne 26100}
 		{
 			Write-Information -MessageData "" -InformationAction Continue
 			Write-Warning -Message $Localization.UnsupportedOSBuild
@@ -601,7 +611,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 
 			exit
 		}
-		"22631"
+		"26100"
 		{
 			# Check whether the current module version is the latest one
 			try
@@ -626,7 +636,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 						Verbose         = $true
 						UseBasicParsing = $true
 					}
-					$LatestSupportedBuild = (Invoke-RestMethod @Parameters).Windows_11
+					$LatestSupportedBuild = (Invoke-RestMethod @Parameters).Windows_11_LTSC_2024
 				}
 				catch [System.Net.WebException]
 				{
@@ -1333,11 +1343,8 @@ function ErrorReporting
 	{
 		"Disable"
 		{
-			if ((Get-WindowsEdition -Online).Edition -notmatch "Core")
-			{
-				Get-ScheduledTask -TaskName QueueReporting -ErrorAction Ignore | Disable-ScheduledTask
-				New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Windows Error Reporting" -Name Disabled -PropertyType DWord -Value 1 -Force
-			}
+			Get-ScheduledTask -TaskName QueueReporting -ErrorAction Ignore | Disable-ScheduledTask
+			New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Windows Error Reporting" -Name Disabled -PropertyType DWord -Value 1 -Force
 
 			Get-Service -Name WerSvc | Stop-Service -Force
 			Get-Service -Name WerSvc | Set-Service -StartupType Disabled

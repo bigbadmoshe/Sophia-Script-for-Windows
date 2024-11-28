@@ -32,7 +32,7 @@ $Parameters = @{
 	Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/sophia_script_versions.json"
 	UseBasicParsing = $true
 }
-$JSONVersions = Invoke-WebRequest @Parameters
+$JSONVersions = Invoke-RestMethod @Parameters
 
 switch ((Get-CimInstance -ClassName Win32_OperatingSystem).BuildNumber)
 {

@@ -21,7 +21,7 @@
 	.\Sophia.ps1 -Functions "DiagTrackService -Disable", "DiagnosticDataLevel -Minimal", UninstallUWPApps
 
 	.EXAMPLE Download and expand the latest Sophia Script version archive (without running) according which Windows and PowerShell versions it is run on
-	irm script.sophi.app -useb | iex
+	iwr script.sophia.team -useb | iex
 
 	.NOTES
 	Supported Windows 11 versions
@@ -31,7 +31,7 @@
 	.NOTES
 	To use the TAB completion for functions and their arguments dot source the Functions.ps1 script first:
 		. .\Function.ps1 (with a dot at the beginning)
-	Read more in the Functions.ps1 file
+	Read more at https://github.com/farag2/Sophia-Script-for-Windows?tab=readme-ov-file#how-to-run-the-specific-functions
 
 	.LINK GitHub
 	https://github.com/farag2/Sophia-Script-for-Windows
@@ -613,7 +613,6 @@ NavigationPaneExpand -Disable
 #endregion OneDrive
 
 #region System
-#region StorageSense
 # Turn on Storage Sense
 # Включить Контроль памяти
 StorageSense -Enable
@@ -621,23 +620,6 @@ StorageSense -Enable
 # Turn off Storage Sense (default value)
 # Выключить Контроль памяти (значение по умолчанию)
 # StorageSense -Disable
-
-# Run Storage Sense every month
-# Запускать Контроль памяти каждый месяц
-StorageSenseFrequency -Month
-
-# Run Storage Sense during low free disk space (default value)
-# Запускать Контроль памяти, когда остается мало место на диске (значение по умолчанию)
-# StorageSenseFrequency -Default
-
-# Turn on automatic cleaning up temporary system and app files (default value)
-# Автоматически очищать временные файлы системы и приложений (значение по умолчанию)
-StorageSenseTempFiles -Enable
-
-# Turn off automatic cleaning up temporary system and app files
-# Не очищать временные файлы системы и приложений
-# StorageSenseTempFiles -Disable
-#endregion StorageSense
 
 # Disable hibernation. It isn't recommended to turn off for laptops
 # Отключить режим гибернации. Не рекомендуется выключать на ноутбуках

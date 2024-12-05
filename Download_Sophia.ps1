@@ -1,6 +1,6 @@
 <#
 	.SYNOPSIS
-	Download and expand latest Sophia Script version, depending on what Windows or PowerShell versions are used to
+	Download and expand the latest Sophia Script version, depending on which Windows or PowerShell versions are used to
 
 	.SYNOPSIS
 	For example, if you start script on Windows 11 via PowerShell 5.1 you will start downloading Sophia Script for Windows 11 PowerShell 5.1
@@ -8,6 +8,7 @@
 	.EXAMPLE
 	iwr script.sophia.team -useb | iex
 #>
+Clear-Host
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 

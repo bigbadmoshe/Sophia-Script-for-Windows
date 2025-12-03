@@ -6,15 +6,22 @@ New-Item -Path WinRAR -ItemType Directory -Force
 
 $Parameters = @{
 	Uri             = "https://www.rarlab.com/rar/winrar-x64-713.exe"
-	OutFile         = "WinRAR\winrar-x64-713.exe"
+	OutFile         = "winrar-x64-713.exe"
 	UseBasicParsing = $true
 }
 Invoke-WebRequest @Parameters
 
 # Install WinRAR silently
-Start-Process -FilePath "WinRAR\winrar-x64-713.exe" -ArgumentList "-s" -PassThru
+& "winrar-x64-713.exe" -s1
 
-Get-ChildItem -Path "$env:ProgramFiles\WinRAR"
+Get-ChildItem -Path "$env:ProgramFiles"
+test-path -Path "$env:ProgramFiles\WinRAR"
+Test-Path -Path "$env:ProgramFiles\WinRAR\WinRAR.exe"
+
+Import-Module -Name PackageManagement -UseWindowsPowerShell -Force
+Get-Package -Name *WinRAR* | fl *
+test-path -Path "$env:ProgramFiles\WinRAR"
+Test-Path -Path "$env:ProgramFiles\WinRAR\WinRAR.exe"
 
 # Get latest version tag for Windows 11
 $Parameters = @{

@@ -18,7 +18,7 @@ $Parameters = @{
 	Verbose         = $true
 }
 $bestRelease = (Invoke-RestMethod @Parameters).platform_releases.windows.filename.replace("exe", "msi")
-
+"https://unlimited.dl.sourceforge.net/project/sevenzip$($bestRelease)?viasf=1"
 $Parameters = @{
 	Uri             = "https://unlimited.dl.sourceforge.net/project/sevenzip$($bestRelease)?viasf=1"
 	OutFile         = "WinRAR\7Zip.msi"

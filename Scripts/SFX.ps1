@@ -6,13 +6,13 @@ New-Item -Path WinRAR -ItemType Directory -Force
 
 $Parameters = @{
 	Uri             = "https://www.rarlab.com/rar/winrar-x64-713.exe"
-	OutFile         = "winrar-x64-713.exe"
+	OutFile         = "WinRAR\winrar-x64-713.exe"
 	UseBasicParsing = $true
 }
 Invoke-WebRequest @Parameters
 
 # Install WinRAR silently
-& "winrar-x64-713.exe" -s1
+& "WinRAR\winrar-x64-713.exe" -s1
 
 Get-ChildItem -Path "$env:ProgramFiles"
 test-path -Path "$env:ProgramFiles\WinRAR"

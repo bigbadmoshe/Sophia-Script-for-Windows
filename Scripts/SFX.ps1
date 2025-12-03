@@ -1,6 +1,6 @@
 Write-Verbose -Message SFX -Verbose
 
-# Download WinRAR
+# Download WinRAR and 7-Zip to expand winrar-x64-713.exe as WinRAR fails to install
 # https://www.rarlab.com
 New-Item -Path WinRAR -ItemType Directory -Force
 
@@ -11,17 +11,31 @@ $Parameters = @{
 }
 Invoke-WebRequest @Parameters
 
-# Install WinRAR silently
-& "WinRAR\winrar-x64-713.exe" -s1
+# Download the latest 7-Zip x64
+$Parameters = @{
+	Uri             = "https://sourceforge.net/projects/sevenzip/best_release.json"
+	UseBasicParsing = $true
+	Verbose         = $true
+}
+$bestRelease = (Invoke-RestMethod @Parameters).platform_releases.windows.filename.replace("exe", "msi")
 
-Get-ChildItem -Path "$env:ProgramFiles"
-test-path -Path "$env:ProgramFiles\WinRAR"
-Test-Path -Path "$env:ProgramFiles\WinRAR\WinRAR.exe"
+$Parameters = @{
+	Uri             = "https://unlimited.dl.sourceforge.net/project/sevenzip$($bestRelease)?viasf=1"
+	OutFile         = "WinRAR\7Zip.msi"
+	UseBasicParsing = $true
+	Verbose         = $true
+}
+Invoke-WebRequest @Parameters
 
-Import-Module -Name PackageManagement -UseWindowsPowerShell -Force
-Get-Package -Name *WinRAR* | fl *
-test-path -Path "$env:ProgramFiles\WinRAR"
-Test-Path -Path "$env:ProgramFiles\WinRAR\WinRAR.exe"
+# Expand 7Zip.msi
+$Arguments = @(
+	"/a `"WinRAR\7Zip.msi`""
+	"TARGETDIR=`"WinRAR\7zip`""
+	"/qb"
+)
+Start-Process "msiexec" -ArgumentList $Arguments -Wait
+
+& "WinRAR\7zip\Files\7-Zip\7z.exe" x "WinRAR\winrar-x64-713.exe" -o"WinRAR"
 
 # Get latest version tag for Windows 11
 $Parameters = @{
@@ -33,4 +47,4 @@ $Latest_Release_Windows_11_PowerShell_5_1 = (Invoke-RestMethod @Parameters).Soph
 (Get-Content -Path Scripts\SFX_config.txt -Encoding utf8NoBOM -Raw) | Foreach-Object -Process {$_ -replace "SophiaScriptVersion", $Latest_Release_Windows_11_PowerShell_5_1} | Set-Content -Path Scripts\SFX_config.txt -Encoding utf8NoBOM -Force
 
 # Create SFX archive
-& "$env:ProgramFiles\WinRAR\Rar.exe" a -sfx -z"Scripts\SFX_config.txt" -ep1 -r "Sophia.Script.for.Windows.11.v$($Latest_Release_Windows_11_PowerShell_5_1)_WinGet.exe" "Sophia_Script_for_Windows_11_v$($Latest_Release_Windows_11_PowerShell_5_1)\*"
+& "WinRAR\Rar.exe" a -sfx -z"Scripts\SFX_config.txt" -ep1 -r "Sophia.Script.for.Windows.11.v$($Latest_Release_Windows_11_PowerShell_5_1)_WinGet.exe" "Sophia_Script_for_Windows_11_v$($Latest_Release_Windows_11_PowerShell_5_1)\*"

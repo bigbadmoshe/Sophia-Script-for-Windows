@@ -1,3 +1,5 @@
+🌐 [English](/README.md) | [Deutsche](/README_de-de.md) | [Русский](/README_ru-ru.md) | [Українська](/README_uk-ua.md)
+
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/master/img/Sophia.png" alt="Sophia Script for Windows" width='150'>
@@ -49,12 +51,6 @@ Made with <img src="./img/heart.svg" height="17px"/> of Windows
 <br>
 <br>
 
-This page is also available in other languages
-
-<a href="./docs/README_uk-ua.md"><img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/master/img/ukraine.png" height="70px"/></a>
-<a href="./docs/README_de-de.md"><img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/master/img/germany.png" height="70px"/></a>
-<a href="./docs/README_ru-ru.md"><img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/master/img/russia.png" height="70px"/></a>
-
 <img src="./img/SophiaScript.gif" width='800'>
 
 </div>
@@ -78,11 +74,11 @@ This page is also available in other languages
 * Personalize Windows UI
 * Display applied registry policies in the Local Group Policy Editor snap-in (gpedit.msc)
 * Enable DNS-over-HTTPS for IPv4
-* Turn off diagnostics tracking scheduled tasks with pop-up form written in [WPF](#screenshots)
+* Turn off diagnostics tracking scheduled tasks with interactive window
 * Uninstall OneDrive "correctly"
-* Interactive [prompts](#change-user-folders-location-programmatically-using-the-interactive-menu)
-* The <kbd>TAB</kbd> [completion](#the-tab-autocomplete-read-more-here) for functions and their arguments (if using the Import-TabCompletion.ps1 file)
-* Change location of the user folders programmatically (without moving user files) within interactive menu using arrows to select a drive
+* Interactive [prompts and popups](#screenshots)
+* <kbd>TAB</kbd> [completion](#how-to-run-the-specific-functions) for functions and their arguments (using Import-TabCompletion.ps1)
+* Change location of the user folders programmatically (without moving user files) using an interactive menu with arrows
   * Desktop
   * Documents
   * Downloads
@@ -92,11 +88,10 @@ This page is also available in other languages
 * Install free (light and dark) "Windows 11 Cursors Concept v2" cursors from [Jepri Creations](https://www.deviantart.com/jepricreations/art/Windows-11-Cursors-Concept-v2-886489356) on-the-fly
 * Uninstall UWP apps displaying their localized packages names
   * Script generates installed UWP apps list [dynamically](#localized-uwp-packages-names)
-* Download and install the [HEVC Video Extensions from Device Manufacturer](https://apps.microsoft.com/detail/9N4WGH0Z6VHQ) to be able to open [HEVC](https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding) format
-* Set an app as default one for specific extension without the "How do you want to open this" pop-up using special [function](https://github.com/DanysysTeam/PS-SFTA)
-* Export all Windows associations. Associations will be exported as Application_Associations.json file in script root folder
-* Import exported JSON file after a clean installation. You need to install all apps according to exported JSON file to restore all associations
-* Install any supported Linux distribution for WSL displaying friendly distro names with pop-up form written in [WPF](#screenshots)
+* Download and install [HEVC Video Extensions from Device Manufacturer](https://apps.microsoft.com/detail/9N4WGH0Z6VHQ)
+* Set an app as default one for specific extension without "How do you want to open this" pop-up
+* Export and import all Windows associations. You need to install all apps according to exported JSON file to restore all associations
+* Install WSL Linux distribution with [pop-up](#screenshots) using friendly distro names
 * Create scheduled tasks with a native toast notification, where you will be able to run or [dismiss](#native-interactive-toasts-for-the-scheduled-tasks) tasks
   * Create scheduled tasks `Windows Cleanup` and `Windows Cleanup Notification` for cleaning up Windows of unused files and Windows updates files
   * Create a scheduled task `SoftwareDistribution` for cleaning up `%SystemRoot%\SoftwareDistribution\Download`
@@ -106,7 +101,7 @@ This page is also available in other languages
   * `%TEMP%`
 * Install the latest provided Microsoft Visual C++ 2015–2026 x86/x64 (ARM64 supported)
 * Install the latest provided .NET Desktop Runtime 8, 9, 10 x64
-* Many more File Explorer and context menu "deep" tweaks
+* Many more File Explorer and context menu tweaks
 
 ## Table of Contents
 
@@ -133,7 +128,37 @@ This page is also available in other languages
 
 ### From release page
 
-[Download](https://github.com/farag2/Sophia-Script-for-Windows/releases/latest) depending to your Windows and PowerShell versions.
+<table>
+  <tbody>
+    <tr>
+      <td align="center">Windows 10</td>
+      <td align="center">Windows 11</td>
+    </tr>
+    <tr>
+      <td align="left"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Windows%2010%20x64-PowerShell%205.1-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+      <td align="left"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Windows%2011-PowerShell%205.1-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+    </tr>
+    <tr>
+      <td align="left"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Windows%2010%20x64-PowerShell%207-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+      <td align="left"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Windows%2011-PowerShell%207-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+    </tr>
+    <tr>
+      <td align="left"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Windows%2010%20x64-LTSC%202019-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+      <td align="left"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Windows%2011%20LTSC%202024-PowerShell%205.1-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+    </tr>
+    <tr>
+      <td align="left"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Windows%2010%20x64-LTSC%202021-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+      <td align="left"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Windows%2011%20Arm-PowerShell%205.1-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+    </tr>
+    <tr>
+      <td align="left"></td>
+      <td align="left"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Windows%2011%20Arm-PowerShell%207-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2"><a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://img.shields.io/badge/Sophia%20Script%20Wrapper-green?labelColor=151B23&color=151B23&style=for-the-badge"></a></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Download via PowerShell
 

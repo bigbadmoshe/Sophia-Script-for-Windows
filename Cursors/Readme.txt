@@ -1,4 +1,4 @@
-This archive was downloaded within GitHub Action: https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Cursors.yml
+This archive was downloaded within GitHub Action: https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Cursors.yml
 
 Hi! thank you for use my cursors.
 

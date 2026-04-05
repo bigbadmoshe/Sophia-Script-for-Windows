@@ -22,7 +22,7 @@ jobs:
           # %LOCALAPPDATA%\Microsoft\WinGet\Packages
           # Get the latest wingetcreate
           # https://github.com/microsoft/winget-create
-          # https://github.com/microsoft/winget-pkgs/blob/master/Tools/YamlCreate.ps1
+          # https://github.com/microsoft/winget-pkgs/blob/main/Tools/YamlCreate.ps1
           $Parameters = @{
             Uri             = "https://aka.ms/wingetcreate/latest"
             OutFile         = "wingetcreate.exe"

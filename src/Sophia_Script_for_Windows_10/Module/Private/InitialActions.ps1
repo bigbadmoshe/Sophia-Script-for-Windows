@@ -105,9 +105,9 @@ function InitialActions
 	# Checking whether the current module version is the latest one
 	try
 	{
-		# https://github.com/farag2/Sophia-Script-for-Windows/blob/master/sophia_script_versions.json
+		# https://github.com/farag2/Sophia-Script-for-Windows/blob/main/sophia_script_versions.json
 		$Parameters = @{
-			Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/sophia_script_versions.json"
+			Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/main/sophia_script_versions.json"
 			Verbose         = $true
 			UseBasicParsing = $true
 		}
@@ -828,9 +828,9 @@ public extern static string BrandingFormatString(string sFormat);
 			# Checking whether the current module version is the latest one
 			try
 			{
-				# https://github.com/farag2/Sophia-Script-for-Windows/blob/master/supported_windows_builds.json
+				# https://github.com/farag2/Sophia-Script-for-Windows/blob/main/supported_windows_builds.json
 				$Parameters = @{
-					Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/supported_windows_builds.json"
+					Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/main/supported_windows_builds.json"
 					Verbose         = $true
 					UseBasicParsing = $true
 				}

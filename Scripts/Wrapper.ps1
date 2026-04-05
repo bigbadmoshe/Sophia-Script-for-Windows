@@ -1,6 +1,6 @@
-# https://github.com/farag2/Sophia-Script-for-Windows/blob/master/sophia_script_versions.json
+# https://github.com/farag2/Sophia-Script-for-Windows/blob/main/sophia_script_versions.json
 $Parameters = @{
-	Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/sophia_script_versions.json"
+	Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/main/sophia_script_versions.json"
 	UseBasicParsing = $true
 	Verbose         = $true
 }

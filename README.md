@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/master/img/Sophia.png" alt="Sophia Script for Windows" width='150'>
+<img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/main/img/Sophia.png" alt="Sophia Script for Windows" width='150'>
 
 # Sophia Script for Windows
 
@@ -23,10 +23,10 @@ Made with <img src="./img/heart.svg" height="17px"/> of Windows
 <br>
 
 <kbd>
-	<a href="https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Badge_downloads.yml"><img src="https://img.shields.io/endpoint?labelColor=151B23&color=151B23&style=for-the-badge&url=https://gist.githubusercontent.com/farag2/25ddc72387f298503b752ad5b8d16eed/raw/SophiaScriptDownloadsCount.json"></a>
+	<a href="https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Badge_downloads.yml"><img src="https://img.shields.io/endpoint?labelColor=151B23&color=151B23&style=for-the-badge&url=https://gist.githubusercontent.com/farag2/25ddc72387f298503b752ad5b8d16eed/raw/SophiaScriptDownloadsCount.json"></a>
 </kbd>
 <kbd>
-	<a href="https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Badge_lines.yml"><img src="https://img.shields.io/endpoint?labelColor=151B23&color=151B23&style=for-the-badge&url=https://gist.githubusercontent.com/farag2/9852d6b9569a91bf69ceba8a94cc97f4/raw/SophiaScript.json"></a>
+	<a href="https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Badge_lines.yml"><img src="https://img.shields.io/endpoint?labelColor=151B23&color=151B23&style=for-the-badge&url=https://gist.githubusercontent.com/farag2/9852d6b9569a91bf69ceba8a94cc97f4/raw/SophiaScript.json"></a>
 </kbd>
 
 <br>
@@ -88,7 +88,7 @@ Made with <img src="./img/heart.svg" height="17px"/> of Windows
   * Pictures
   * Videos
 * Install free (light and dark) `Windows 11 Cursors Concept v2` cursors from [Jepri Creations](https://www.deviantart.com/jepricreations/art/Windows-11-Cursors-Concept-v2-886489356) on-the-fly
-  * Archive was downloaded to [Cursors](https://github.com/farag2/Sophia-Script-for-Windows/tree/master/Cursors) folder using [DeviantArt API](https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Cursors.yml)
+  * Archive was downloaded to [Cursors](https://github.com/farag2/Sophia-Script-for-Windows/tree/main/Cursors) folder using [DeviantArt API](https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Cursors.yml)
 * Set an app as default one for specific extension without `How do you want to open this` pop-up
 * Export and import all Windows associations. You need to install all apps according to exported JSON file to restore all associations
 * Install WSL Linux distribution with [pop-up](#screenshots) using friendly distro names
@@ -157,7 +157,7 @@ Download and expand to Downloads folder the latest `Sophia Script for Windows` v
 iwr script.sophia.team -useb | iex
 ```
 
-Download and expand to Downloads folder the latest `Sophia Script for Windows` version from the last [commit](https://github.com/farag2/Sophia-Script-for-Windows/commits/master/) depending to your Windows and PowerShell versions you use.
+Download and expand to Downloads folder the latest `Sophia Script for Windows` version from the last [commit](https://github.com/farag2/Sophia-Script-for-Windows/commits/main/) depending to your Windows and PowerShell versions you use.
 
 ```powershell
 iwr sl.sophia.team -useb | iex
@@ -336,5 +336,5 @@ Read more [here](./Wrapper/README.md)
 
 [SophiApp 2.0](https://github.com/Sophia-Community/SophiApp) is in ongoing development. 🚀
 
-![Image](https://github.com/farag2/Sophia-Script-for-Windows/raw/master/img/0.gif)
-![Image](https://github.com/farag2/Sophia-Script-for-Windows/raw/master/img/1.png)
+![Image](https://github.com/farag2/Sophia-Script-for-Windows/raw/main/img/0.gif)
+![Image](https://github.com/farag2/Sophia-Script-for-Windows/raw/main/img/1.png)

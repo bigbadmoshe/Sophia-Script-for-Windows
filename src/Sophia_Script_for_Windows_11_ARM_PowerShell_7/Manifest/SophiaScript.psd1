@@ -11,10 +11,10 @@
 
 	PrivateData = @{
 		PSData = @{
-			LicenseUri    = 'https://github.com/farag2/Sophia-Script-for-Windows/blob/master/LICENSE'
+			LicenseUri    = 'https://github.com/farag2/Sophia-Script-for-Windows/blob/main/LICENSE'
 			ProjectUri    = 'https://github.com/farag2/Sophia-Script-for-Windows'
-			IconUri       = 'https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/img/Sophia.png'
-			ReleaseNotes  = 'https://github.com/farag2/Sophia-Script-for-Windows/blob/master/CHANGELOG.md'
+			IconUri       = 'https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/main/img/Sophia.png'
+			ReleaseNotes  = 'https://github.com/farag2/Sophia-Script-for-Windows/blob/main/CHANGELOG.md'
 		}
 	}
 }

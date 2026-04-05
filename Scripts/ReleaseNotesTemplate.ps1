@@ -13,17 +13,16 @@ $Penultimate = (Invoke-RestMethod @Parameters).tag_name | Select-Object -Index 1
 
 # Parse json for the latest script versions
 $Parameters = @{
-	Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/sophia_script_versions.json"
+	Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/main/sophia_script_versions.json"
 	UseBasicParsing = $true
 	Verbose         = $true
 }
 $JSON = Invoke-RestMethod @Parameters
 
 # Replace variables with script latest versions
-# No need to replace special characters with percent-encoding ones
 (Get-Content -Path ReleaseNotesTemplate.md -Encoding utf8 -Raw) | Foreach-Object -Process {
 	# ${{ github.ref_name }}
-	$_ -replace "NewVersion", $env:GITHUB_REF_NAME `
+	$_ -replace "NewVersion", $env:INPUT_TAG `
 	-replace "OldVersion", $Penultimate `
 	-replace "Sophia_Script_Windows_10_PowerShell_5_1", $JSON.Sophia_Script_Windows_10_PowerShell_5_1 `
 	-replace "Sophia_Script_Windows_10_PowerShell_7", $JSON.Sophia_Script_Windows_10_PowerShell_7 `

@@ -11,7 +11,7 @@ Author: Team Sophia
 PackageName: Sophia Script for Windows
 PackageUrl: https://github.com/farag2/Sophia-Script-for-Windows
 License: MIT
-LicenseUrl: https://github.com/farag2/Sophia-Script-for-Windows/blob/master/LICENSE
+LicenseUrl: https://github.com/farag2/Sophia-Script-for-Windows/blob/main/LICENSE
 Copyright: Copyright (c) 2014—2026 Team Sophia
 ShortDescription: The most powerful PowerShell module on GitHub for Windows 10 and Windows 11 fine-tuning and tweaking
 Description: Sophia Script for Windows is the largest PowerShell module on GitHub for Windows 10 and Windows 11 fine-tuning and automating the routine tasks
@@ -32,6 +32,6 @@ Tags:
 - debloater
 - windows-debloat
 - sophia-script
-ReleaseNotesUrl: https://github.com/farag2/Sophia-Script-for-Windows/blob/master/CHANGELOG.md
+ReleaseNotesUrl: https://github.com/farag2/Sophia-Script-for-Windows/blob/main/CHANGELOG.md
 ManifestType: defaultLocale
 ManifestVersion: 1.10.0

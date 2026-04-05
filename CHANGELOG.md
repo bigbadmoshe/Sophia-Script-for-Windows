@@ -72,9 +72,9 @@ DNSoverHTTPS -ComssOne
 * Added `WindowsAI` function to configure Windows AI correctly compared with [RemoveWindowsAI](https://github.com/zoicware/RemoveWindowsAI)
 * `RKNBypass` function renamed into `AntizapretProxy`
 * Fixed CABInstallContext
-* `HEVC` function for windows 10 now downloads appx installer via CI/CD [config](https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/HEVC.yml)
+* `HEVC` function for windows 10 now downloads appx installer via CI/CD [config](https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/HEVC.yml)
 * `LatestInstalled.NET`, `DismissMSAccount`, and `DismissSmartScreenFilter` functions removed as an unnecessary ones
-* Added `PSSCriptAnalyzer` check for CI/CD[config](https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/PSSCriptAnalyzer.yml)
+* Added `PSSCriptAnalyzer` check for CI/CD[config](https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/PSSCriptAnalyzer.yml)
 * `Install-VCRedist` now installs x86 and x64 latest supported Visual C++ Redistributable
 * `Errors` functions merged with `PostAction`
 * Updated Readme
@@ -106,11 +106,11 @@ Fixed XAML markup in `Uninstall-UWPApps` function. Thanks to Gugenot Murm for bu
 ## 6.0.1 | 7.0.1 — 25.12.2025
 
 * Improved `Install-Cursor` function
-  * [Added](https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Cursors.yml) CI/CD config to download always up-to-date jepricreations' cursors via a DeviantArt API to the [Cursors folder](https://github.com/farag2/Sophia-Script-for-Windows/tree/master/Cursors).
+  * [Added](https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Cursors.yml) CI/CD config to download always up-to-date jepricreations' cursors via a DeviantArt API to the [Cursors folder](https://github.com/farag2/Sophia-Script-for-Windows/tree/main/Cursors).
 * Added cloud Defender scan before uploading to release page;
-  * https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Sophia.yml#L70
+  * https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Sophia.yml#L70
 * Added `Sophia Script` to [Scoop](https://scoop.sh)
-  * https://github.com/ScoopInstaller/Extras/blob/master/bucket/sophia-script.json
+  * https://github.com/ScoopInstaller/Extras/blob/main/bucket/sophia-script.json
   * Fix for #684
 
 ```powershell
@@ -243,7 +243,7 @@ Thanks to @lowl1f3
 * Improved `CABInstallContext` function;
 * Fixed `Export-Associations` function;
 * Fixed `UninstallPCHealthCheck` function;
-* Added package for Windows 11 (PowerShell 5.1) to [WinGet](https://github.com/microsoft/winget-pkgs/tree/master/manifests/t/TeamSophia/SophiaScript)
+* Added package for Windows 11 (PowerShell 5.1) to [WinGet](https://github.com/microsoft/winget-pkgs/tree/main/manifests/t/TeamSophia/SophiaScript)
   * The command downloads only `Windows 11 (PowerShell 5.1)` archive to your `Downloads` folder unlike the `Chocolatey` [script](#download-via-chocolatey) and expands it.
 
 ```powershell
@@ -546,7 +546,7 @@ Thanks to @lowl1f3 for bug reporting.
 ## 5.18.2 | 6.6.2 — 06.03.2024
 
 * Initial checks simplified;
-  * Script now relies on parsing <https://github.com/farag2/Sophia-Script-for-Windows/blob/master/supported_windows_builds.json> to check the actual supported Windows build;
+  * Script now relies on parsing <https://github.com/farag2/Sophia-Script-for-Windows/blob/main/supported_windows_builds.json> to check the actual supported Windows build;
     * If there's no Internet connection established, the check will be skipped.
   * In anticipation of providing an ability to remove Edge from Microsoft, the Edge check was removed.
 * `InstallDotNetRuntimes` function has now only `NET6x64, NET7x64, NET8x64` supported arguments
@@ -688,7 +688,7 @@ https://user-images.githubusercontent.com/10544660/253818031-b7ce6bf1-d968-41ea-
 
 * Replaced interactive menus overall within a custom `Show-Menu` function;
   * Thanks to [MaxKozlov](https://habr.com/users/MaxKozlov)
-  * [How-to](https://github.com/farag2/Sophia-Script-for-Windows/tree/master#change-user-folders-location-programmatically-using-the-interactive-menu).
+  * [How-to](https://github.com/farag2/Sophia-Script-for-Windows/tree/main#change-user-folders-location-programmatically-using-the-interactive-menu).
 * Improved German translation. #514 merged;
   * Thanks to @sensinsane.
 * Minor changes.
@@ -798,7 +798,7 @@ Thanks to frost_tg for bug reporting
   * If you run the script on `Windows 11 22000` you will silently download and run [Windows 11 Installation Assistant](https://www.microsoft.com/software-download/windows11), then download the [PC Health Check app](https://support.microsoft.com/en-us/windows/how-to-use-the-pc-health-check-app-9c8abd9b-03ba-4e67-81ef-36f37caa7844) and expand it without installation to prepare for upgrading.
 * `CleanupTask`, `SoftwareDistributionTask`, `TempTask` re-written;
   * Now all scheduled tasks respect `Focus Assist` mode and won't interrupt while you playing games or watching fullscreen videos with any notification toasts or powershell.exe pop-ups
-  * Uses the [FocusAssistLib.cs](https://github.com/DCourtel/Windows_10_Focus_Assist/blob/master/FocusAssistLibrary/FocusAssistLib.cs) code from @DCourtel!
+  * Uses the [FocusAssistLib.cs](https://github.com/DCourtel/Windows_10_Focus_Assist/blob/main/FocusAssistLibrary/FocusAssistLib.cs) code from @DCourtel!
   * <https://redplait.blogspot.com/2018/07/wnf-ids-from-perfntcdll-adk-version.html>
   * **I strongly recommend you to update them** ([how-to](https://github.com/farag2/Sophia-Script-for-Windows#how-to-run-the-specific-functions))
 
@@ -887,7 +887,7 @@ Thanks to frost_tg for bug reporting
 ## 5.14.4 | 6.2.4 — 04.12.2022
 
 * Updated the Scheduled tasks notification toasts UI;
-  ![Image](https://github.com/Sophia-Community/SophiApp/raw/master/img/Toasts.png)
+  ![Image](https://github.com/Sophia-Community/SophiApp/raw/main/img/Toasts.png)
   * Call `Sophia -Functions "CleanupTask -Register", "SoftwareDistributionTask -Register", "TempTask -Register"` to update existing Scheduled tasks to have a new toasts UI;
   * [Read](https://github.com/farag2/Sophia-Script-for-Windows#how-to-run-the-specific-functions) how to call specific function from Sophia Script for Windows.
 * Fixed bug for `TempFolder` function to make it work without errors on systems with non-latin characters in username;
@@ -959,7 +959,7 @@ Thanks to frost_tg for bug reporting
   * Fixes bug when script couldn't load `PolFileEditor.dll` into session and broke the functionality that relies on it. Now if script detects that `PolFileEditor.dll` wasn't loaded, offer to restart powershell.exe session.
   * Will be obsolete with the 6.2.0 release.
 * Fixed `winget` not installing Visual C++ Redistributable 2015–2022;
-  * Microsoft [changed](https://github.com/microsoft/winget-pkgs/blob/master/manifests/m/Microsoft/VCRedist/2015%2B/x64/14.34.31823.3/Microsoft.VCRedist.2015%2B.x64.installer.yaml#L4) package identifier.
+  * Microsoft [changed](https://github.com/microsoft/winget-pkgs/blob/main/manifests/m/Microsoft/VCRedist/2015%2B/x64/14.34.31823.3/Microsoft.VCRedist.2015%2B.x64.installer.yaml#L4) package identifier.
 * Minor changes.
 
 ## 5.13.4 | 6.1.4 — 13.08.2022
@@ -974,7 +974,7 @@ Diff from v6.1.3
   * Now they're skipped for `Windows 10 Enteprise G`;
   * Closes #379.
 * Now all all `.ps1, .psm1, .psd1` files are signed in cloud via GitHub Actions by a self-issued certificates;
-  * <https://github.com/farag2/Sophia-Script-for-Windows/blob/master/Scripts/Sign.ps1>
+  * <https://github.com/farag2/Sophia-Script-for-Windows/blob/main/Scripts/Sign.ps1>
   * <https://github.com/farag2/Sophia-Script-for-Windows/blob/63de3f5896fba014d7f6bb0493d4934b221fe1ef/.github/workflows/Sophia.yml#L17>
 * Removed unnecessary `BitLockerContext` function;
 * Improved `UpdateLGPEPolicies` function;
@@ -1049,7 +1049,7 @@ Diff from v6.1.3
 
 ## Windows 11 21H2/22H2 | Windows 10 2004/20H2/21H1/21H2/22H2 | Enterprise LTSC 2021 | Enterprise LTSC 2019
 
-* Now the repo doesn't keep any 3rd party libraries, and all scripts are built using an updated GitHub Action [config](https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Sophia.yml);
+* Now the repo doesn't keep any 3rd party libraries, and all scripts are built using an updated GitHub Action [config](https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Sophia.yml);
   * 3rd party tools that are downloaded and used;
     * [PolicyFileEditor](https://github.com/dlwyatt/PolicyFileEditor) made by @dlwyatt;
     * [Microsoft.Windows.SDK.NET.Ref](https://www.nuget.org/packages/Microsoft.Windows.SDK.NET.Ref/);
@@ -1391,7 +1391,7 @@ Invoke-RestMethod -Uri script.sophi.app | Invoke-Expression
 * Fixed bug when the `Errors output` function couldn't get path to a file with an error;
 * Updated translations;
 * Closed #234, #235, and #236 as fixed;
-* Now script gets the latest version from [sophia_script_versions.json](https://github.com/farag2/Sophia-Script-for-Windows/blob/master/sophia_script_versions.json) to compare with;
+* Now script gets the latest version from [sophia_script_versions.json](https://github.com/farag2/Sophia-Script-for-Windows/blob/main/sophia_script_versions.json) to compare with;
 * Minor changes.
 
 ## Sophia Script Wrapper 2.3
@@ -1661,7 +1661,7 @@ Diff from v5.10.3
 ![image](https://i.imgur.com/kQDktvj.png)
 * Fixed bug in the `EventViewerCustomView` function when the `ProcessCreation.xml` file was being created with a wrong encodings;
   * You may invoke the function again: `EventViewerCustomView -Enable`.
-* Updated the GitHub Action [config](https://github.com/farag2/Windows-10-Sophia-Script/blob/master/.github/workflows/Sophia.yml) to automate the SHA256 file creation and uploading to the release page. As @aaronhatesregex wanted 😄
+* Updated the GitHub Action [config](https://github.com/farag2/Windows-10-Sophia-Script/blob/main/.github/workflows/Sophia.yml) to automate the SHA256 file creation and uploading to the release page. As @aaronhatesregex wanted 😄
 * Updated the Turkish translation. Thanks to @v30xy;
 * Added the Hungarian translation <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg" height="11px"/>. Thanks to @84stangman;
 * Updated Sophia Script Wrapper to 1.1 build 5;
@@ -1949,7 +1949,7 @@ Diff from v5.4
 Diff from v5.3.3
 [5.3.3...5.4](https://github.com/farag2/Windows-10-Sophia-Script/compare/5.3.3...5.4)
 
-* Now all archives are being created and uploaded to the release page via [GitHub Actions](https://github.com/farag2/Windows-10-Sophia-Script/blob/master/.github/workflows/Sophia.yml);
+* Now all archives are being created and uploaded to the release page via [GitHub Actions](https://github.com/farag2/Windows-10-Sophia-Script/blob/main/.github/workflows/Sophia.yml);
   * Thnx to @inv2004
 * When running the script using ```.\Sophia.ps1 -Functions "FunctionName1 -Parameter"``` regardless of the functions entered as an argument, the `Checks` function will be executed first, and the ```Refresh``` and ```Errors``` functions will be executed at the end;
 * Updated the ```CreateRestorePoint``` function
@@ -2022,7 +2022,7 @@ Diff from v5.3
 
 * Also uploaded the updated LTSC module version up to 5.0;
 * Added a new logo on the main page. Logo made by [teahead](https://twitter.com/tea_head_)
-* Added [PowerShell 7.1](https://github.com/PowerShell/PowerShell) <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/ps_black_64.svg" width="30"> compatibility :trophy:
+* Added [PowerShell 7.1](https://github.com/PowerShell/PowerShell) <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/main/assets/ps_black_64.svg" width="30"> compatibility :trophy:
   * Closed #70;
   * Anyway sometimes pinning shortcuts via syspin do nothing. It's PS Core bug. :thinking:
 * Fixed typo causing bug in ```CleanUpTask -Register``` function. Please re-register task;

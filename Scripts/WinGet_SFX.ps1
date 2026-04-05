@@ -5,7 +5,7 @@ winget install --id RARLab.WinRAR --accept-source-agreements --force
 
 # Get latest version tag for Windows 11
 $Parameters = @{
-	Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/master/sophia_script_versions.json"
+	Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/main/sophia_script_versions.json"
 	UseBasicParsing = $true
 	Verbose         = $true
 }

@@ -2,13 +2,13 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/master/img/Sophia.png" alt="Sophia Script for Windows" width='150'>
+<img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/main/img/Sophia.png" alt="Sophia Script for Windows" width='150'>
 
 # Sophia Script for Windows
 
 Das leistungsstärkste PowerShell-Modul zur Feinabstimmung von Windows auf GitHub
 
-Mit <img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/img/heart.svg" height="17px"/> zu Windows hergestellt
+Mit <img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/main/img/heart.svg" height="17px"/> zu Windows hergestellt
 
 <kbd>
 	<a href="https://github.com/farag2/Sophia-Script-for-Windows/actions"><img src="https://img.shields.io/github/actions/workflow/status/farag2/Sophia-Script-for-Windows/Sophia.yml?labelColor=151B23&color=151B23&style=for-the-badge&label=build&logo=GitHub"></a>
@@ -23,10 +23,10 @@ Mit <img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows
 <br>
 
 <kbd>
-	<a href="https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Badge_downloads.yml"><img src="https://img.shields.io/endpoint?labelColor=151B23&color=151B23&style=for-the-badge&url=https://gist.githubusercontent.com/farag2/25ddc72387f298503b752ad5b8d16eed/raw/SophiaScriptDownloadsCount.json"></a>
+	<a href="https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Badge_downloads.yml"><img src="https://img.shields.io/endpoint?labelColor=151B23&color=151B23&style=for-the-badge&url=https://gist.githubusercontent.com/farag2/25ddc72387f298503b752ad5b8d16eed/raw/SophiaScriptDownloadsCount.json"></a>
 </kbd>
 <kbd>
-	<a href="https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Badge_lines.yml"><img src="https://img.shields.io/endpoint?labelColor=151B23&color=151B23&style=for-the-badge&url=https://gist.githubusercontent.com/farag2/9852d6b9569a91bf69ceba8a94cc97f4/raw/SophiaScript.json"></a>
+	<a href="https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Badge_lines.yml"><img src="https://img.shields.io/endpoint?labelColor=151B23&color=151B23&style=for-the-badge&url=https://gist.githubusercontent.com/farag2/9852d6b9569a91bf69ceba8a94cc97f4/raw/SophiaScript.json"></a>
 </kbd>
 
 <br>
@@ -88,7 +88,7 @@ Mit <img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows
   * Bilder
   * Videos
 * Installieren Sie den kostenlosen (helle und dunkle) "Windows 11 Cursors Concept v2" Cursor von [Jepri Creations](https://www.deviantart.com/jepricreations/art/Windows-11-Cursors-Concept-v2-886489356) on-the-fly
-  * Das Archiv wurde mit der [DeviantArt API](https://github.com/farag2/Sophia-Script-for-Windows/blob/master/.github/workflows/Cursors.yml) in den Ordner  [Cursors](https://github.com/farag2/Sophia-Script-for-Windows/tree/master/Cursors) heruntergeladen
+  * Das Archiv wurde mit der [DeviantArt API](https://github.com/farag2/Sophia-Script-for-Windows/blob/main/.github/workflows/Cursors.yml) in den Ordner  [Cursors](https://github.com/farag2/Sophia-Script-for-Windows/tree/main/Cursors) heruntergeladen
 * Eine App als Standard für eine bestimmte Dateiendung festlegen, ohne dass das Popup-Fenster `Wie möchten Sie diese Datei öffnen?` angezeigt wird
 * Exportieren und importieren Sie alle Windows-Zuordnungen. Sie müssen alle Apps gemäß der exportierten JSON-Datei installieren, um alle Zuordnungen wiederherzustellen
 * Installieren Sie die WSL-Linux-Distribution mit Popup-Fenster(#screenshots) unter Verwendung benutzerfreundlicher Distributionsnamen
@@ -157,7 +157,7 @@ Laden Sie die neueste Version von `Sophia Script for Windows` entsprechend Ihrer
 iwr script.sophia.team -useb | iex
 ```
 
-Laden Sie die neueste Version von `Sophia Script for Windows` aus dem letzten [Commit](https://github.com/farag2/Sophia-Script-for-Windows/commits/master/) entsprechend Ihrer Windows- und PowerShell-Version herunter und entpacken Sie sie in den Ordner Downloads.
+Laden Sie die neueste Version von `Sophia Script for Windows` aus dem letzten [Commit](https://github.com/farag2/Sophia-Script-for-Windows/commits/main/) entsprechend Ihrer Windows- und PowerShell-Version herunter und entpacken Sie sie in den Ordner Downloads.
 
 ```powershell
 iwr sl.sophia.team -useb | iex
@@ -335,5 +335,5 @@ Lesen Sie [hier mehr dazu](./Wrapper/README.md)
 
 [SophiApp 2.0](https://github.com/Sophia-Community/SophiApp) befindet sich in der Entwicklung. 🚀
 
-![Image](https://github.com/farag2/Sophia-Script-for-Windows/raw/master/img/0.gif)
-![Image](https://github.com/farag2/Sophia-Script-for-Windows/raw/master/img/1.png)
+![Image](https://github.com/farag2/Sophia-Script-for-Windows/raw/main/img/0.gif)
+![Image](https://github.com/farag2/Sophia-Script-for-Windows/raw/main/img/1.png)

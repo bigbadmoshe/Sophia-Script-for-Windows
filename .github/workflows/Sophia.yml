@@ -1,9 +1,11 @@
 name: Build
 
-on:
-  push:
-    tags:
-      - "*.*"
+on: 
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag"
+        required: true
 
 jobs:
   patch:
@@ -75,8 +77,10 @@ jobs:
         run: |
           # Get Defender path
           $DefenderPath = (Get-ChildItem -Path "$env:ProgramData\Microsoft\Windows Defender\Platform" -Directory | Sort-Object Name -Descending | Select-Object -First 1).FullName
+
           # Update Defender definitions
           & "$DefenderPath\MpCmdRun.exe" -SignatureUpdate -Verbose
+
           # Start scan
           # We need to use absolute path
           & "$DefenderPath\MpCmdRun.exe" -Scan -ScanType 3 -DisableRemediation -File $((Get-Item -Path Sophia_Script).FullName) | ForEach-Object {Write-Verbose -Message $_ -Verbose}
@@ -86,19 +90,18 @@ jobs:
       - name: Release Notes Template
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Set $env:GITHUB_REF_NAME variable to use in ps1 file instead of ${{ github.ref_name }}
-          GITHUB_REF_NAME: ${{ github.ref_name }}
-        id: read_release
+          INPUT_TAG: ${{ github.event.inputs.tag }}
         run: |
           . "Scripts\ReleaseNotesTemplate.ps1"
 
       - name: Uploading
-        uses: softprops/action-gh-release@master
-        with:
-          name: ${{ steps.read_release.outputs.RELEASE_NAME }}
-          token: ${{ github.token }}
-          # Use "/" in path to files
-          files: |
-            Sophia_Script/Sophia*.zip
-            Sophia_Script/Sophia*.exe
-          body_path: ${{ steps.read_release.outputs.ReleaseBody }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $Tag   = "${{ inputs.tag }}"
+          $ZIP   = @((Get-Item -Path "Sophia_Script\Sophia*.zip").FullName)
+          $EXE   = @((Get-Item -Path "Sophia_Script\Sophia*.exe").FullName)
+          $Files = $ZIP + $EXE
+          $Title = $env:RELEASE_NAME
+
+          gh release create $Tag $Files --title $Title --notes-file ReleaseNotesTemplate.md

@@ -3,7 +3,7 @@ $String = Get-Content -Path "Scripts\WinGet_Manifests\TeamSophia.SophiaScript.ya
 $LocalManifest = $String -split " " | Select-Object -Last 1
 
 # Get latest supported manifest version provided
-# https://github.com/microsoft/winget-cli/tree/master/schemas/JSON/manifests
+# https://github.com/microsoft/winget-cli/tree/main/schemas/JSON/manifests
 $Token = $env:GITHUB_TOKEN
 $Headers = @{
 	Accept        = "application/vnd.github+json"
@@ -26,7 +26,7 @@ if ([System.Version]$LocalManifest -lt [System.Version]$LatestManifest)
 
 # Get latest version tag for Windows 11
 $Parameters = @{
-	Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/master/sophia_script_versions.json"
+	Uri             = "https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/refs/heads/main/sophia_script_versions.json"
 	Headers         = $Headers
 	UseBasicParsing = $true
 	Verbose         = $true

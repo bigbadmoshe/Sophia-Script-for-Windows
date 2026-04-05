@@ -167,7 +167,7 @@ switch ((Get-CimInstance -ClassName Win32_OperatingSystem).BuildNumber)
 			$Version = "Windows_10_PowerShell_7"
 		}
 	}
-	{$_ -ge 26200}
+	{$_ -ge 26100}
 	{
 		# Check for Windows 11 LTSC 2024
 		if ((Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name ProductName) -notmatch "LTSC 2024")
@@ -237,16 +237,34 @@ switch ((Get-CimInstance -ClassName Win32_OperatingSystem).BuildNumber)
 		}
 		else
 		{
-			$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_LTSC2024
-			$Parameters = @{
-				Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.LTSC.2024.v$LatestRelease.zip"
-				OutFile         = "$DownloadsFolder\Sophia.Script.zip"
-				UseBasicParsing = $true
-				Verbose         = $true
-			}
-			Invoke-WebRequest @Parameters
+			# PowerShell 5.1
+			if ($Host.Version.Major -eq 5)
+			{
+				$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_LTSC2024_PowerShell_5_1
+				$Parameters = @{
+					Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.LTSC.2024.v$LatestRelease.zip"
+					OutFile         = "$DownloadsFolder\Sophia.Script.zip"
+					UseBasicParsing = $true
+					Verbose         = $true
+				}
+				Invoke-WebRequest @Parameters
 
-			$Version = "Windows_11_LTSC2024"
+				$Version = "Windows_11_LTSC2024_PowerShell_5_1"
+			}
+			else
+			{
+				# PowerShell 7
+				$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_LTSC2024_PowerShell_7
+				$Parameters = @{
+					Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.LTSC.2024.PowerShell.7.v$LatestRelease.zip"
+					OutFile         = "$DownloadsFolder\Sophia.Script.zip"
+					UseBasicParsing = $true
+					Verbose         = $true
+				}
+				Invoke-WebRequest @Parameters
+
+				$Version = "Windows_11_LTSC2024_PowerShell_7"
+			}
 		}
 	}
 	default
@@ -321,13 +339,22 @@ switch ($Version)
 			Set-Location -Path "$DownloadsFolder\Sophia_Script_for_Windows_10_LTSC_2021_v$LatestRelease"
 		}
 	}
-	"Windows_11_LTSC2024"
+	"Windows_11_LTSC2024_PowerShell_5_1"
 	{
 		Invoke-Item -Path "$DownloadsFolder\Sophia_Script_for_Windows_11_LTSC_2024_v$LatestRelease"
 
 		if ((([System.Security.Principal.WindowsIdentity]::GetCurrent()).Owner -eq "S-1-5-32-544"))
 		{
 			Set-Location -Path "$DownloadsFolder\Sophia_Script_for_Windows_11_LTSC_2024_v$LatestRelease"
+		}
+	}
+	"Windows_11_LTSC2024_PowerShell_7"
+	{
+		Invoke-Item -Path "$DownloadsFolder\Sophia_Script_for_Windows_11_LTSC_2024_PowerShell_7_v$LatestRelease"
+
+		if ((([System.Security.Principal.WindowsIdentity]::GetCurrent()).Owner -eq "S-1-5-32-544"))
+		{
+			Set-Location -Path "$DownloadsFolder\Sophia_Script_for_Windows_11_LTSC_2024_PowerShell_7_v$LatestRelease"
 		}
 	}
 	"Windows_10_PowerShell_5_1"

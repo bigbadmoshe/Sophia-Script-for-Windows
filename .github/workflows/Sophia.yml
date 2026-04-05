@@ -59,6 +59,10 @@ jobs:
         run: |
           . "Scripts\Windows_11_LTSC_2024.ps1"
 
+      - name: Windows 11 LTSC 2024 PowerShell 7
+        run: |
+          . "Scripts\Windows_11_LTSC_2024_PS7.ps1"
+
       - name: Sophia Script Wrapper
         run: |
           . "Scripts\Wrapper.ps1"

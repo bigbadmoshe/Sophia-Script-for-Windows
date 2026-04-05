@@ -157,7 +157,14 @@ switch ((Get-CimInstance -ClassName Win32_OperatingSystem).BuildNumber)
 		}
 		else
 		{
-			$Version = "Sophia_Script_for_Windows_11_LTSC_2024"
+			if ($Host.Version.Major -eq 5)
+			{
+				$Version = "Sophia_Script_for_Windows_11_LTSC_2024"
+			}
+			else
+			{
+				$Version = "Sophia_Script_for_Windows_11_LTSC_2024_PowerShell_7"
+			}
 		}
 	}
 	default
@@ -311,6 +318,15 @@ switch ($Version)
 		if ((([System.Security.Principal.WindowsIdentity]::GetCurrent()).Owner -eq "S-1-5-32-544"))
 		{
 			Set-Location -Path "$DownloadsFolder\Sophia_Script_for_Windows_11_LTSC_2024_Latest"
+		}
+	}
+	"Sophia_Script_for_Windows_11_LTSC_2024_PowerShell_7"
+	{
+		Invoke-Item -Path "$DownloadsFolder\Sophia_Script_for_Windows_11_LTSC_2024_PowerShell_7_Latest"
+
+		if ((([System.Security.Principal.WindowsIdentity]::GetCurrent()).Owner -eq "S-1-5-32-544"))
+		{
+			Set-Location -Path "$DownloadsFolder\Sophia_Script_for_Windows_11_LTSC_2024_PowerShell_7_Latest"
 		}
 	}
 	"Sophia_Script_for_Windows_10"

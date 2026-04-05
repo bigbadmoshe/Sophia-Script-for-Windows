@@ -526,7 +526,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 	[Predicate[string]]{
 		param($UWPComponent)
 
-		(Get-AppxPackage -Name $UWPComponent).Status -eq "OK"
+		Get-AppxPackage -Name $UWPComponent
 	})
 	if (-not $UWPComponents)
 	{
@@ -602,6 +602,13 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 		Write-Warning -Message ($Localization.WindowsComponentBroken -f "Microsoft Defender")
 		Write-Information -MessageData "" -InformationAction Continue
 
+		# Try to display available AVs
+		try
+		{
+			Get-CimInstance -ClassName AntiVirusProduct -Namespace root/SecurityCenter2
+		}
+		catch {}
+
 		Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
 		Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
 		Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
@@ -632,13 +639,17 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 	}
 
 	# Check whether Microsoft Defender is a default AV
-	$Global:DefenderDefaultAV = $false
-	$productState = (Get-CimInstance -ClassName AntiVirusProduct -Namespace root/SecurityCenter2 -ErrorAction Stop | Where-Object -FilterScript {$_.instanceGuid -eq "{D68DDC3A-831F-4fae-9E44-DA132C1ACF46}"}).productState
-	$DefenderState = ('0x{0:x}' -f $productState).Substring(3, 2)
-	if ($DefenderState -notmatch "00|01")
+	$InstalledAVs = Get-CimInstance -ClassName AntiVirusProduct -Namespace root/SecurityCenter2
+	if ($InstalledAVs.displayName.Count -gt 1)
 	{
-		# Defender is a default AV
-		$Global:DefenderDefaultAV = $true
+		$Global:DefenderDefaultAV = $false
+		$productState = ($InstalledAVs | Where-Object -FilterScript {$_.instanceGuid -eq "{D68DDC3A-831F-4fae-9E44-DA132C1ACF46}"}).productState
+		$DefenderState = ('0x{0:x}' -f $productState).Substring(3, 2)
+		if ($DefenderState -notmatch "00|01")
+		{
+			# Defender is a default AV
+			$Global:DefenderDefaultAV = $true
+		}
 	}
 
 	# Check whether Controlled Folder Access is enabled
@@ -821,7 +832,7 @@ public extern static string BrandingFormatString(string sFormat);
 
 			# Windows 10 Pro
 			$Windows_Long = [WinAPI.Winbrand]::BrandingFormatString("%WINDOWS_LONG%")
-			# e.g. 24H2
+			# e.g. 22H2
 			$DisplayVersion = Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows nt\CurrentVersion" -Name DisplayVersion
 
 			Write-Warning -Message ($Localization.UnsupportedOSBuild -f $Windows_Long, $DisplayVersion)

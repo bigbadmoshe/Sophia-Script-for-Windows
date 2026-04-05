@@ -935,28 +935,6 @@
         "WindowsDefault": "Zero"
     },
     {
-        "Region": "UI & Personalization",
-        "Control": "cmb",
-        "Required": "false",
-        "Function": "StartLayout",
-        "Arg": {
-            "Zero": {
-                "Tag": "Default",
-                "Opposite": "Two"
-            },
-            "One": {
-                "Tag": "ShowMorePins",
-                "Opposite": "Zero"
-            },
-            "Two": {
-                "Tag": "ShowMoreRecommendations",
-                "Opposite": "Zero"
-            }
-        },
-        "Preset": "One",
-        "WindowsDefault": "Zero"
-    },
-    {
         "Region": "OneDrive",
         "Control": "cmbchkalter",
         "Required": "false",

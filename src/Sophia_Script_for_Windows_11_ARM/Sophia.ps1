@@ -26,7 +26,7 @@
 	iwr sl.sophia.team -useb | iex
 
 	.NOTES
-	Supports Windows 11 24H2+ for ARM64
+	Supports Windows 11 25H2+ for ARM64
 
 	.NOTES
 	To use Enable tab completion to invoke for functions if you do not know function name dot source the Import-TabCompletion.ps1 script first:
@@ -558,18 +558,6 @@ StartAccountNotifications -Hide
 # Show Microsoft account-related notifications on Start (default value)
 # Отображать на начальном экране уведомления, касающиеся учетной записи Microsoft (значение по умолчанию)
 # StartAccountNotifications -Show
-
-# Show default Start layout (default value)
-# Отображать стандартный макет начального экрана (значение по умолчанию)
-# StartLayout -Default
-
-# Show more pins on Start
-# Отображать больше закреплений на начальном экране
-StartLayout -ShowMorePins
-
-# Show more recommendations on Start
-# Отображать больше рекомендаций на начальном экране
-# StartLayout -ShowMoreRecommendations
 #endregion UI & Personalization
 
 #region OneDrive

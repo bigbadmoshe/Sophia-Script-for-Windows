@@ -426,8 +426,8 @@ TaskbarCombine -Always
 # Объединить кнопки панели задач и никогда не скрывать метки
 # TaskbarCombine -Never
 
-# Unpin the "Microsoft Edge", "Microsoft Store", or "Mail" shortcuts from the taskbar
-# Открепить ярлыки "Microsoft Edge", "Microsoft Store" или "Почта" от панели задач
+# Unpin Microsoft Edge, Microsoft Store, and Mail shortcuts from the taskbar
+# Открепить ярлыки Microsoft Edge, Microsoft Store и Почта от панели задач
 UnpinTaskbarShortcuts -Shortcuts Edge, Store, Mail
 
 # View the Control Panel icons by large icons

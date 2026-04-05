@@ -277,11 +277,11 @@ Wrapper — это сторонний лончер с закрытым исхо�
 [Windows-10-LTSC-2019]: https://support.microsoft.com/topic/windows-10-and-windows-server-2019-update-history-725fc2e1-4443-6831-a5ca-51ff5cbcb059
 [Windows-10-LTSC-2021]: https://support.microsoft.com/topic/windows-10-update-history-857b8ccb-71e4-49e5-b3f6-7073197d98fb
 [Windows-11-LTSC-2024]: https://support.microsoft.com/topic/windows-11-version-24h2-update-history-0929c747-1815-4543-8461-0160d16f15e5
-[Windows-11-24h2]: https://support.microsoft.com/topic/windows-11-version-25h2-update-history-99c7f493-df2a-4832-bd2d-6706baa0dec0
+[Windows-11-25h2]: https://support.microsoft.com/topic/windows-11-version-25h2-update-history-99c7f493-df2a-4832-bd2d-6706baa0dec0
 
 |                Версия                    |                 Сборка                       |      Издание        |
 |:-----------------------------------------|:--------------------------------------------:|:-------------------:|
-| Windows 11 24H2/25H2+                    | [Последняя стабильная][Windows-11-24h2]      | Home/Pro/Enterprise |
+| Windows 11 25H2+                         | [Последняя стабильная][Windows-11-25h2]      | Home/Pro/Enterprise |
 | Windows 10 x64 22H2                      | [Последняя стабильная][Windows-10]           | Home/Pro/Enterprise |
 | Windows 11 Enterprise LTSC 2024          | [Последняя стабильная][Windows-11-LTSC-2024] | Enterprise          |
 | Windows 10 x64 21H2 Enterprise LTSC 2021 | [Последняя стабильная][Windows-10-LTSC-2021] | Enterprise          |

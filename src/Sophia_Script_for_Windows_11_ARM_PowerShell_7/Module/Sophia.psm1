@@ -12,7 +12,7 @@
 	(c) 2014—2026 Team Sophia
 
 	.NOTES
-	Supports Windows 11 24H2+ for ARM64
+	Supports Windows 11 25H2+ for ARM64
 
 	.NOTES
 	Arm CPU architecture supported
@@ -189,15 +189,18 @@ function DiagnosticDataLevel
 		$Default
 	)
 
-	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection))
+	if (-not (Test-Path -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection))
 	{
-		New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Force
+		New-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Force
 	}
-
 	if (-not (Test-Path -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack))
 	{
 		New-Item -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack -Force
 	}
+
+	# Remove all policies in order to make changes visible in UI
+	Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Force -ErrorAction Ignore
+	Set-Policy -Scope Computer -Path SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type CLEAR
 
 	switch ($PSCmdlet.ParameterSetName)
 	{
@@ -207,14 +210,12 @@ function DiagnosticDataLevel
 			if (($EditionID -match "Enterprise") -or ($EditionID -match "Education"))
 			{
 				# Diagnostic data off
-				New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -PropertyType DWord -Value 0 -Force
-				Set-Policy -Scope Computer -Path SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWORD -Value 0
+				New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -PropertyType DWord -Value 0 -Force
 			}
 			else
 			{
 				# Send required diagnostic data
-				New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -PropertyType DWord -Value 1 -Force
-				Set-Policy -Scope Computer -Path SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWORD -Value 1
+				New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -PropertyType DWord -Value 1 -Force
 			}
 
 			New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name MaxTelemetryAllowed -PropertyType DWord -Value 1 -Force
@@ -225,9 +226,7 @@ function DiagnosticDataLevel
 			# Optional diagnostic data
 			New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name MaxTelemetryAllowed -PropertyType DWord -Value 3 -Force
 			New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack -Name ShowedToastAtLevel -PropertyType DWord -Value 3 -Force
-			Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Force -ErrorAction Ignore
-
-			Set-Policy -Scope Computer -Path SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type CLEAR
+			New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -PropertyType DWord -Value 3 -Force
 		}
 	}
 }
@@ -617,7 +616,9 @@ function ScheduledTasks
 	Write-Verbose -Message ([WinAPI.GetStrings]::GetString(12612)) -Verbose
 
 	# Getting list of all scheduled tasks according to the conditions
-	$Tasks = Get-ScheduledTask | Where-Object -FilterScript {($_.State -eq $State) -and ($_.TaskName -in $CheckedScheduledTasks)}
+	$Tasks = Get-ScheduledTask | Where-Object -FilterScript {
+		($_.State -eq $State) -and ($_.TaskName -in $CheckedScheduledTasks)
+	}
 
 	if (-not $Tasks)
 	{
@@ -3698,86 +3699,6 @@ function StartAccountNotifications
 		"Show"
 		{
 			Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name Start_AccountNotifications -Force -ErrorAction Ignore
-		}
-	}
-}
-
-<#
-	.SYNOPSIS
-	Configure Start layout
-
-	.PARAMETER Default
-	Show default Start layout
-
-	.PARAMETER ShowMorePins
-	Show more pins on Start
-
-	.PARAMETER ShowMoreRecommendations
-	Show more recommendations on Start
-
-	.EXAMPLE
-	StartLayout -Default
-
-	.EXAMPLE
-	StartLayout -ShowMorePins
-
-	.EXAMPLE
-	StartLayout -ShowMoreRecommendations
-
-	.NOTES
-	Current user
-#>
-function StartLayout
-{
-	param
-	(
-		[Parameter(
-			Mandatory = $true,
-			ParameterSetName = "Default"
-		)]
-		[switch]
-		$Default,
-
-		[Parameter(
-			Mandatory = $true,
-			ParameterSetName = "ShowMorePins"
-		)]
-		[switch]
-		$ShowMorePins,
-
-		[Parameter(
-			Mandatory = $true,
-			ParameterSetName = "ShowMoreRecommendations"
-		)]
-		[switch]
-		$ShowMoreRecommendations
-	)
-
-	if (Get-Process -Name Start11Srv, StartAllBackCfg, StartMenu -ErrorAction Ignore)
-	{
-		Write-Information -MessageData "" -InformationAction Continue
-		Write-Verbose -Message ($Localization.CustomStartMenu, ($Localization.Skipped -f $MyInvocation.Line.Trim()) -join " ") -Verbose
-		Write-Error -Message ($Localization.CustomStartMenu, ($Localization.Skipped -f $MyInvocation.Line.Trim()) -join " ") -ErrorAction SilentlyContinue
-
-		return
-	}
-
-	switch ($PSCmdlet.ParameterSetName)
-	{
-		"Default"
-		{
-			# Default
-			New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name Start_Layout -PropertyType DWord -Value 0 -Force
-		}
-		"ShowMorePins"
-		{
-			# Show More Pins
-			New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name Start_Layout -PropertyType DWord -Value 1 -Force
-		}
-		"ShowMoreRecommendations"
-		{
-			# Show More Recommendations
-			New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name Start_Layout -PropertyType DWord -Value 2 -Force
 		}
 	}
 }
@@ -7276,7 +7197,7 @@ function DefaultTerminalApp
 #>
 function Install-VCRedist
 {
-	# Get latest build version
+	# Get latest Visual C++ Redistributable Packages build version
 	# https://github.com/ScoopInstaller/Extras/blob/master/bucket/vcredist2022.json
 	try
 	{
@@ -7755,10 +7676,7 @@ function WindowsAI
 	.SYNOPSIS
 	Windows Subsystem for Linux (WSL)
 
-	.PARAMETER
-	Enable Windows Subsystem for Linux (WSL), install the latest WSL Linux kernel version, and a Linux distribution using a pop-up form
-
-	.EXAMPLE
+	.EXAMPLE Enable Windows Subsystem for Linux (WSL) and install the latest WSL Linux kernel version
 	Install-WSL
 
 	.NOTES

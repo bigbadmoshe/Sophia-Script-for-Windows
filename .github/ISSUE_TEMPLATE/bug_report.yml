@@ -4,8 +4,8 @@ body:
 - type: markdown
   attributes:
     value: >
-      Make sure you are able to repro it on the latest released version. Please open a [new discussion](https://github.com/farag2/Sophia-Script-for-Windows/discussions/new) if you have an idea.
-      If you prefer Telegram, you may visit out [chat](https://t.me/sophia_chat), or [Discord](https://discord.gg/sSryhaEv79). Languages allowed: English & русский.
+      Make sure you are able to reproduce it on the latest released version. Please open a [new discussion](https://github.com/farag2/Sophia-Script-for-Windows/discussions/new) if you have an idea.
+      If you prefer Telegram, you may visit out [chat](https://t.me/sophia_chat), or [Discord](https://discord.gg/sSryhaEv79).
 - type: checkboxes
   attributes:
     label: Prerequisites
@@ -49,7 +49,7 @@ body:
   attributes:
     label: Windows Version
     description: Which version of Windows are you using? Type `winver` in Start menu.
-    placeholder: e.g. Windows 11 24H2 26100.2605
+    placeholder: e.g. Windows 11 25H2 26200.2605
   validations:
     required: true
 - type: input

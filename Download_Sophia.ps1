@@ -167,7 +167,7 @@ switch ((Get-CimInstance -ClassName Win32_OperatingSystem).BuildNumber)
 			$Version = "Windows_10_PowerShell_7"
 		}
 	}
-	{$_ -ge 26100}
+	{$_ -ge 26200}
 	{
 		# Check for Windows 11 LTSC 2024
 		if ((Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name ProductName) -notmatch "LTSC 2024")

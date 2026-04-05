@@ -186,35 +186,34 @@ function DiagnosticDataLevel
 		$Default
 	)
 
-	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection))
+	if (-not (Test-Path -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection))
 	{
-		New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Force
+		New-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Force
 	}
-
 	if (-not (Test-Path -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack))
 	{
 		New-Item -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack -Force
 	}
 
+	# Remove all policies in order to make changes visible in UI
+	Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Force -ErrorAction Ignore
+	Set-Policy -Scope Computer -Path SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type CLEAR
+
 	switch ($PSCmdlet.ParameterSetName)
 	{
 		"Minimal"
 		{
-			# Diagnostic data off
-			New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -PropertyType DWord -Value 0 -Force
-			Set-Policy -Scope Computer -Path SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWORD -Value 0
-
+			# Security level
+			New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -PropertyType DWord -Value 0 -Force
 			New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name MaxTelemetryAllowed -PropertyType DWord -Value 1 -Force
 			New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack -Name ShowedToastAtLevel -PropertyType DWord -Value 1 -Force
 		}
 		"Default"
 		{
-			# Optional diagnostic data
-			New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name MaxTelemetryAllowed -PropertyType DWord -Value 3 -Force
+			# Full level
+			New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -PropertyType DWord -Value 3 -Force
 			New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack -Name ShowedToastAtLevel -PropertyType DWord -Value 3 -Force
 			Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Force -ErrorAction Ignore
-
-			Set-Policy -Scope Computer -Path SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type CLEAR
 		}
 	}
 }
@@ -604,7 +603,9 @@ function ScheduledTasks
 	Write-Verbose -Message ([WinAPI.GetStrings]::GetString(12612)) -Verbose
 
 	# Getting list of all scheduled tasks according to the conditions
-	$Tasks = Get-ScheduledTask | Where-Object -FilterScript {($_.State -eq $State) -and ($_.TaskName -in $CheckedScheduledTasks)}
+	$Tasks = Get-ScheduledTask | Where-Object -FilterScript {
+		($_.State -eq $State) -and ($_.TaskName -in $CheckedScheduledTasks)
+	}
 
 	if (-not $Tasks)
 	{
@@ -9363,6 +9364,13 @@ function DNSoverHTTPS
 
 		[Parameter(
 			Mandatory = $true,
+			ParameterSetName = "AdGuard"
+		)]
+		[switch]
+		$OpenDNS,
+
+		[Parameter(
+			Mandatory = $true,
 			ParameterSetName = "Disable"
 		)]
 		[switch]
@@ -9435,6 +9443,13 @@ function DNSoverHTTPS
 			$PrimaryDNS   = "94.140.14.14"
 			$SecondaryDNS = "94.140.14.15"
 			$Query        = "https://dns.adguard-dns.com/dns-query"
+		}
+		# https://www.cisco.com/c/en/us/support/docs/security/umbrella/224705-configure-dns-over-https-doh-with.html
+		"OpenDNS"
+		{
+			$PrimaryDNS   = "208.67.222.222"
+			$SecondaryDNS = "208.67.220.220"
+			$Query        = "https://doh.umbrella.com/dns-query"
 		}
 	}
 

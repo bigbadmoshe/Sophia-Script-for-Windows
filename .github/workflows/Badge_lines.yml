@@ -38,21 +38,21 @@ jobs:
         run: |
           # https://gist.github.com/farag2/9852d6b9569a91bf69ceba8a94cc97f4
 
-          $GistContent = @{
-            schemaVersion = 1
-            label         = "Lines of Code"
-            message       = $env:CODE_LINES
-            color         = "brightgreen"
-            namedLogo     = "PowerShell"
-          } | ConvertTo-Json
-
-          $Body = @{
-            files = @{
-              "SophiaScript.json" = @{
-                content = $GistContent
+          $Body = @"
+          {
+            "files": {
+            "SophiaScript.json": {
+              "content": {
+                "namedLogo": "PowerShell",
+                "message": "$env:CODE_LINES",
+                "label": "Lines of Code",
+                "color": "brightgreen"
+               }
               }
             }
-          } | ConvertTo-Json
+          }
+          "@
+
           $Headers = @{
             Authorization = "Bearer $env:GIST_TOKEN"
             Accept        = "application/vnd.github+json"

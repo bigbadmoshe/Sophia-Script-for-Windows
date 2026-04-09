@@ -75,21 +75,21 @@ jobs:
         run: |
           # https://gist.github.com/farag2/25ddc72387f298503b752ad5b8d16eed
 
-          $Body = @"
-          {
-            "files": {
-            "SophiaScript.json": {
-              "content": {
-                "namedLogo": "PowerShell",
-                "message": "$env:DOWNLOADS_COUNT",
-                "label": "Downloads",
-                "color": "brightgreen"
-               }
+          $GistContent = @{
+            schemaVersion = 1
+            label         = "downloads"
+            message       = $env:DOWNLOADS_COUNT
+            color         = "brightgreen"
+            namedLogo     = "GitHub"
+          } | ConvertTo-Json
+
+          $Body = @{
+            files = @{
+              "SophiaScriptDownloadsCount.json" = @{
+                content = $GistContent
               }
             }
-          }
-          "@
-
+          } | ConvertTo-Json
           $Headers = @{
             Authorization = "Bearer $env:GIST_TOKEN"
             Accept        = "application/vnd.github+json"

@@ -17,6 +17,7 @@ BitLockerInOperation                      = O BitLocker está em ação. Sua uni
 BitLockerAutomaticEncryption              = A unidade C está criptografada, embora o BitLocker esteja desativado. Deseja descriptografar sua unidade?
 UnsupportedRelease                        = Encontrada uma versão mais recente do Sophia Script for Windows: {0}. Faça o download da versão mais recente.
 KeyboardArrows                            = Use as teclas de seta {0} e {1} do teclado para selecionar sua resposta
+ESUProgramEnrollment                      = O Windows 10 chegou ao fim do suporte em 14 de outubro de 2025. Seu PC pode estar vulnerável a softwares maliciosos, trojans e vulnerabilidades de dia zero. Deseja se inscrever no programa de Atualizações de Segurança Estendidas para Consumidores (ESU) para receber atualizações até 2028 usando o TSforge do Microsoft Activation Scripts (MAS)?
 CustomizationWarning                      = Você personalizou todas as funções no arquivo de predefinição {0} antes de executar o Sophia Script for Windows?
 WindowsComponentBroken                    = {0} quebrado ou removido do sistema operativo. Reinstale o Windows usando apenas uma imagem ISO genuína.
 MicroSoftStorePowerShellWarning           = Não há suporte para o PowerShell baixado da Microsoft Store. Execute uma versão MSI.

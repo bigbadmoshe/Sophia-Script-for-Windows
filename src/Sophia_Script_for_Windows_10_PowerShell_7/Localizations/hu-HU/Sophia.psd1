@@ -17,6 +17,7 @@ BitLockerInOperation                      = A BitLocker működik. A C meghajtó
 BitLockerAutomaticEncryption              = A C meghajtó titkosítva van, bár a BitLocker ki van kapcsolva. Szeretné dekódolni a meghajtót?
 UnsupportedRelease                        = Újabb Sophia Script for Windows verzió található: {0}. Kérjük, töltse le a legújabb verziót.
 KeyboardArrows                            = Kérjük, használja a billentyűzet {0} és {1} nyílbillentyűit a válasz kiválasztásához
+ESUProgramEnrollment                      = A Windows 10 támogatása 2025. október 14-én lejár. A számítógépe sebezhetővé válhat a rosszindulatú szoftverek, trójai programok és zero-day sebezhetőségek számára. Szeretne csatlakozni a Consumer Extended Security Updates (ESU) programhoz, hogy a Microsoft Activation Scripts (MAS) TSforge szolgáltatásának segítségével 2028-ig frissítéseket kapjon?
 CustomizationWarning                      = Személyre szabott minden opciót a {0} preset fájlban, mielőtt futtatni kívánja a Sophia szkriptet?
 WindowsComponentBroken                    = A {0} elromlott vagy eltávolították az operációs rendszerből. Ponovno instalirajte Windows koristeći samo originalnu ISO sliku.
 MicroSoftStorePowerShellWarning           = A Microsoft Store-ból letöltött PowerShell nem támogatott. Kérjük, futtasson egy MSI verziót.

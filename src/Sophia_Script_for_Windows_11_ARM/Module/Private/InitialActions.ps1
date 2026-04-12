@@ -3,10 +3,10 @@
 	Initial checks before proceeding to module execution
 
 	.VERSION
-	7.1.4
+	7.1.5
 
 	.DATE
-	24.02.2026
+	12.04.2026
 
 	.COPYRIGHT
 	(c) 2014—2026 Team Sophia
@@ -28,7 +28,7 @@ function InitialActions
 
 	Set-StrictMode -Version Latest
 
-	$Host.UI.RawUI.WindowTitle = "Sophia Script for Windows 11 v7.1.4 (Arm) | Made with $([System.Char]::ConvertFromUtf32(0x1F497)) of Windows | $([System.Char]0x00A9) Team Sophia, 2014$([System.Char]0x2013)2026"
+	$Host.UI.RawUI.WindowTitle = "Sophia Script for Windows 11 v7.1.5 (Arm) | Made with $([System.Char]::ConvertFromUtf32(0x1F497)) of Windows | $([System.Char]0x00A9) Team Sophia, 2014$([System.Char]0x2013)2026"
 
 	# Unblock all files in the script folder by removing the Zone.Identifier alternate data stream with a value of "3"
 	Get-ChildItem -Path $PSScriptRoot\..\..\ -File -Recurse -Force | Unblock-File
@@ -605,7 +605,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 
 	# Check whether Microsoft Defender is a default AV
 	$InstalledAVs = Get-CimInstance -ClassName AntiVirusProduct -Namespace root/SecurityCenter2
-	if ($InstalledAVs.displayName.Count -gt 1)
+	if (($InstalledAVs.displayName | Measure-Object).Count -gt 1)
 	{
 		$Global:DefenderDefaultAV = $false
 		$productState = ($InstalledAVs | Where-Object -FilterScript {$_.instanceGuid -eq "{D68DDC3A-831F-4fae-9E44-DA132C1ACF46}"}).productState

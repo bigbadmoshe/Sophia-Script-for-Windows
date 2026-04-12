@@ -17,6 +17,7 @@ BitLockerInOperation                      = BitLocker is in action. Your C drive
 BitLockerAutomaticEncryption              = C drive is encrypted, although BitLocker is turned off. Do you want to decrypt your drive?
 UnsupportedRelease                        = A newer Sophia Script for Windows version found: {0}. Please download the latest version.
 KeyboardArrows                            = Please use the arrow keys {0} and {1} on your keyboard to select your answer
+ESUProgramEnrollment                      = Windows 10 reached the end of support on October 14, 2025. Your PC may be vulnerable to malicious software, trojans, and zero-day exploits. Do you want to enroll in Consumer Extended Security Updates (ESU) program to receive updates until 2028 using TSforge from Microsoft Activation Scripts (MAS)?
 CustomizationWarning                      = Have you customized every function in the {0} preset file before running Sophia Script for Windows?
 WindowsComponentBroken                    = {0} broken or removed from Windows. Reinstall Windows using only a genuine ISO image.
 MicroSoftStorePowerShellWarning           = PowerShell downloaded from the Microsoft Store is not supported. Please run an MSI version.

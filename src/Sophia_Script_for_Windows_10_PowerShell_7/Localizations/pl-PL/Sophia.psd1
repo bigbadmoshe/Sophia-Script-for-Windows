@@ -17,6 +17,7 @@ BitLockerInOperation                      = BitLocker działa. Dysk C jest zaszy
 BitLockerAutomaticEncryption              = Dysk C jest zaszyfrowany, mimo że funkcja BitLocker jest wyłączona. Czy chcesz odszyfrować dysk?
 UnsupportedRelease                        = Znaleziono nowszą wersję skryptu Sophia: {0}. Proszę pobrać najnowszą wersję.
 KeyboardArrows                            = Użyj klawiszy strzałek {0} i {1} na klawiaturze, aby wybrać odpowiedź
+ESUProgramEnrollment                      = Wsparcie dla systemu Windows 10 wygasło 14 października 2025 r. Twój komputer może być narażony na ataki złośliwego oprogramowania, trojanów i luk typu zero-day. Czy chcesz zapisać się do programu Consumer Extended Security Updates (ESU), aby otrzymywać aktualizacje do 2028 r. za pomocą narzędzia TSforge z pakietu Microsoft Activation Scripts (MAS)?
 CustomizationWarning                      = Czy dostosowałeś funkcje w predefiniowanym pliku {0} przed uruchomieniem Sophia Script for Windows?
 WindowsComponentBroken                    = {0} jest uszkodzony lub usunięty z systemu operacyjnego. Zainstaluj ponownie system Windows, używając tylko oryginalnego obrazu ISO.
 MicroSoftStorePowerShellWarning           = PowerShell pobrany ze sklepu Microsoft Store nie jest obsługiwany. Należy uruchomić wersję MSI.

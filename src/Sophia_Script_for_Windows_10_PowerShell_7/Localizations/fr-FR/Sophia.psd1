@@ -17,6 +17,7 @@ BitLockerInOperation                      = BitLocker est en cours d'exécution.
 BitLockerAutomaticEncryption              = Le lecteur C est chiffré, bien que BitLocker soit désactivé. Voulez-vous déchiffrer votre lecteur?
 UnsupportedRelease                        = Une nouvelle version de Sophia Script for Windows a été trouvée: {0}. Veuillez télécharger la dernière version.
 KeyboardArrows                            = Veuillez utiliser les touches fléchées {0} et {1} de votre clavier pour sélectionner votre réponse
+ESUProgramEnrollment                      = Le support de Windows 10 a pris fin le 14 octobre 2025. Votre PC pourrait être exposé à des logiciels malveillants, des chevaux de Troie et des failles de type zero-day. Souhaitez-vous vous inscrire au programme "Consumer Extended Security Updates" (ESU) afin de recevoir des mises à jour jusqu'en 2028 à l'aide de TSforge de Microsoft Activation Scripts (MAS)?
 CustomizationWarning                      = Avez-vous personnalisé chaque fonction du fichier de préréglage {0} avant d'exécuter Sophia Script for Windows?
 WindowsComponentBroken                    = {0} cassé ou supprimé du système d'exploitation. Réinstallez Windows en utilisant uniquement une image ISO authentique.
 MicroSoftStorePowerShellWarning           = PowerShell téléchargé depuis le Microsoft Store n'est pas pris en charge. Veuillez exécuter une version MSI.

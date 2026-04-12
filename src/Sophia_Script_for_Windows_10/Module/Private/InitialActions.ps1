@@ -3,10 +3,10 @@
 	Initial checks before proceeding to module execution
 
 	.VERSION
-	6.1.4
+	6.1.5
 
 	.DATE
-	24.02.2026
+	12.04.2026
 
 	.COPYRIGHT
 	(c) 2014—2026 Team Sophia
@@ -28,7 +28,7 @@ function InitialActions
 
 	Set-StrictMode -Version Latest
 
-	$Host.UI.RawUI.WindowTitle = "Sophia Script for Windows 10 v6.1.4 | Made with $([System.Char]::ConvertFromUtf32(0x1F497)) of Windows | $([System.Char]0x00A9) Team Sophia, 2014$([System.Char]0x2013)2026"
+	$Host.UI.RawUI.WindowTitle = "Sophia Script for Windows 10 v6.1.5 | Made with $([System.Char]::ConvertFromUtf32(0x1F497)) of Windows | $([System.Char]0x00A9) Team Sophia, 2014$([System.Char]0x2013)2026"
 
 	# Unblock all files in the script folder by removing the Zone.Identifier alternate data stream with a value of "3"
 	Get-ChildItem -Path $PSScriptRoot\..\..\ -File -Recurse -Force | Unblock-File
@@ -602,7 +602,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 
 	# Check whether Microsoft Defender is a default AV
 	$InstalledAVs = Get-CimInstance -ClassName AntiVirusProduct -Namespace root/SecurityCenter2
-	if ($InstalledAVs.displayName.Count -gt 1)
+	if (($InstalledAVs.displayName | Measure-Object).Count -gt 1)
 	{
 		$Global:DefenderDefaultAV = $false
 		$productState = ($InstalledAVs | Where-Object -FilterScript {$_.instanceGuid -eq "{D68DDC3A-831F-4fae-9E44-DA132C1ACF46}"}).productState
@@ -879,6 +879,32 @@ public extern static string BrandingFormatString(string sFormat);
 
 				exit
 			}
+
+			Write-Information -MessageData "" -InformationAction Continue
+			Write-Warning -Message $Localization.ESUProgramEnrollment
+			Write-Information -MessageData "" -InformationAction Continue
+			Write-Verbose -Message "https://support.microsoft.com/windows/windows-10-support-has-ended-on-october-14-2025-2ca8b313-1946-43d3-b55c-2b95b107f281" -Verbose
+			Write-Verbose -Message "https://learn.microsoft.com/lifecycle/faq/extended-security-updates" -Verbose
+			Write-Verbose -Message "https://massgrave.dev" -Verbose
+
+			do
+			{
+				$Choice = Show-Menu -Menu @($Yes, $No) -Default 2
+
+				switch ($Choice)
+				{
+					$Yes
+					{
+						Start-Process -FilePath "https://massgrave.dev"
+					}
+					$No
+					{
+						continue
+					}
+					$KeyboardArrows {}
+				}
+			}
+			until ($Choice -ne $KeyboardArrows)
 		}
 	}
 

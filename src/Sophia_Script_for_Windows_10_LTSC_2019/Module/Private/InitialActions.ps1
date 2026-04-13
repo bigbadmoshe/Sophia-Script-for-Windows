@@ -604,6 +604,11 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 			$Global:DefenderDefaultAV = $true
 		}
 	}
+	else
+	{
+		# Defender is a default AV
+		$Global:DefenderDefaultAV = $true
+	}
 
 	# Check whether Controlled Folder Access is enabled
 	if ((Get-MpPreference).EnableControlledFolderAccess -eq 1)

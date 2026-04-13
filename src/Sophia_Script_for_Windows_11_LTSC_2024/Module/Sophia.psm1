@@ -6858,11 +6858,11 @@ function Import-Associations
 function Install-VCRedist
 {
 	# Get latest Visual C++ Redistributable Packages build version
-	# https://github.com/ScoopInstaller/Extras/blob/main/bucket/vcredist2022.json
+	# https://github.com/ScoopInstaller/Extras/blob/master/bucket/vcredist2022.json
 	try
 	{
 		$Parameters = @{
-			Uri             = "https://raw.githubusercontent.com/ScoopInstaller/Extras/refs/heads/main/bucket/vcredist2022.json"
+			Uri             = "https://raw.githubusercontent.com/ScoopInstaller/Extras/refs/heads/master/bucket/vcredist2022.json"
 			UseBasicParsing = $true
 			Verbose         = $true
 		}

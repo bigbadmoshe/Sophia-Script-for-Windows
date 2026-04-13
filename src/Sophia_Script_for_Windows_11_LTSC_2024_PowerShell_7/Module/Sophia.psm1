@@ -3132,11 +3132,11 @@ function Install-Cursors
 
 	# Reload cursor on-the-fly
 	$Signature = @{
-		Namespace          = "WinAPI"
-		Name               = "Cursor"
-		Language           = "CSharp"
-		CompilerParameters = $CompilerParameters
-		MemberDefinition   = @"
+		Namespace        = "WinAPI"
+		Name             = "Cursor"
+		Language         = "CSharp"
+		CompilerOptions  = $CompilerOptions
+		MemberDefinition = @"
 [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
 public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);
 "@
@@ -9295,6 +9295,9 @@ function WindowsSandbox
 	.PARAMETER AdGuard
 	Enable DNS-over-HTTPS using AdGuard DNS
 
+	.PARAMETER OpenDNS
+	Enable DNS-over-HTTPS using OpenDNS DNS
+
 	.PARAMETER Disable
 	Set default ISP's DNS records
 
@@ -9312,6 +9315,9 @@ function WindowsSandbox
 
 	.EXAMPLE
 	DNSoverHTTPS -AdGuard
+
+	.EXAMPLE
+	DNSoverHTTPS -OpenDNS
 
 	.EXAMPLE
 	DNSoverHTTPS -Disable
@@ -9364,7 +9370,7 @@ function DNSoverHTTPS
 
 		[Parameter(
 			Mandatory = $true,
-			ParameterSetName = "AdGuard"
+			ParameterSetName = "OpenDNS"
 		)]
 		[switch]
 		$OpenDNS,

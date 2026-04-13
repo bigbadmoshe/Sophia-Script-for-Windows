@@ -30,11 +30,11 @@ function Global:Set-KnownFolderPath
 	}
 
 	$Signature = @{
-		Namespace          = "WinAPI"
-		Name               = "KnownFolders"
-		Language           = "CSharp"
-		CompilerParameters = $CompilerParameters
-		MemberDefinition   = @"
+		Namespace        = "WinAPI"
+		Name             = "KnownFolders"
+		Language         = "CSharp"
+		CompilerOptions  = $CompilerOptions
+		MemberDefinition = @"
 [DllImport("shell32.dll")]
 public extern static int SHSetKnownFolderPath(ref Guid folderId, uint flags, IntPtr token, [MarshalAs(UnmanagedType.LPWStr)] string path);
 "@

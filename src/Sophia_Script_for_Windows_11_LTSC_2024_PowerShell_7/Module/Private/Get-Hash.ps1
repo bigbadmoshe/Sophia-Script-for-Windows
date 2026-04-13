@@ -43,11 +43,11 @@ function Get-Hash
 	)
 
 	$Signature = @{
-		Namespace          = "WinAPI"
-		Name               = "PatentHash"
-		Language           = "CSharp"
-		CompilerParameters = $CompilerParameters
-		MemberDefinition   = @"
+		Namespace        = "WinAPI"
+		Name             = "PatentHash"
+		Language         = "CSharp"
+		CompilerOptions  = $CompilerOptions
+		MemberDefinition = @"
 public static uint[] WordSwap(byte[] a, int sz, byte[] md5)
 {
 	if (sz < 2 || (sz & 1) == 1)

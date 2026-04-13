@@ -3784,11 +3784,11 @@ function Install-Cursors
 
 	# Reload cursor on-the-fly
 	$Signature = @{
-		Namespace          = "WinAPI"
-		Name               = "Cursor"
-		Language           = "CSharp"
-		CompilerParameters = $CompilerParameters
-		MemberDefinition   = @"
+		Namespace        = "WinAPI"
+		Name             = "Cursor"
+		Language         = "CSharp"
+		CompilerOptions  = $CompilerOptions
+		MemberDefinition = @"
 [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
 public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);
 "@

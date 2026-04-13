@@ -199,6 +199,5 @@ public static void PostMessage()
 		} | Sort-Object -Property $Localization.ErrorsLine | Format-Table -AutoSize -Wrap | Out-String).Trim()
 	}
 
-	Write-Information -MessageData "" -InformationAction Continue
 	Write-Warning -Message $Localization.RestartWarning
 }

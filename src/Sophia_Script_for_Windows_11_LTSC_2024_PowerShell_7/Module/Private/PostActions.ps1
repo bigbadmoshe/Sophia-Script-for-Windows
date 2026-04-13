@@ -18,11 +18,11 @@ function PostActions
 {
 	#region Refresh Environment
 	$Signature = @{
-		Namespace          = "WinAPI"
-		Name               = "UpdateEnvironment"
-		Language           = "CSharp"
-		CompilerParameters = $CompilerParameters
-		MemberDefinition   = @"
+		Namespace        = "WinAPI"
+		Name             = "UpdateEnvironment"
+		Language         = "CSharp"
+		CompilerOptions  = $CompilerOptions
+		MemberDefinition = @"
 private static readonly IntPtr HWND_BROADCAST = new IntPtr(0xffff);
 private const int WM_SETTINGCHANGE = 0x1a;
 private const int SMTO_ABORTIFHUNG = 0x0002;
@@ -147,8 +147,8 @@ public static void PostMessage()
 	New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\AppUserModelId\Sophia -Name ShowInSettings -Value 0 -PropertyType DWord -Force
 
 	# Call toast notification
-	[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null
-	[Windows.Data.Xml.Dom.XmlDocument, Windows.Data.Xml.Dom.XmlDocument, ContentType = WindowsRuntime] | Out-Null
+	Add-Type -AssemblyName "$PSScriptRoot\..\..\Binaries\WinRT.Runtime.dll"
+	Add-Type -AssemblyName "$PSScriptRoot\..\..\Binaries\Microsoft.Windows.SDK.NET.dll"
 
 	[xml]$ToastTemplate = @"
 <toast duration="Long" scenario="reminder">
@@ -199,6 +199,5 @@ public static void PostMessage()
 		} | Sort-Object -Property $Localization.ErrorsLine | Format-Table -AutoSize -Wrap | Out-String).Trim()
 	}
 
-	Write-Information -MessageData "" -InformationAction Continue
 	Write-Warning -Message $Localization.RestartWarning
 }

@@ -9,7 +9,7 @@ $Parameters = @{
 	UseBasicParsing = $true
 	Verbose         = $true
 }
-$Penultimate = (Invoke-RestMethod @Parameters).tag_name | Select-Object -Index 1
+$OldTag = (Invoke-RestMethod @Parameters).tag_name | Select-Object -First 1
 
 # Parse json for the latest script versions
 $Parameters = @{
@@ -23,7 +23,7 @@ $JSON = Invoke-RestMethod @Parameters
 (Get-Content -Path ReleaseNotesTemplate.md -Encoding utf8 -Raw) | Foreach-Object -Process {
 	# ${{ github.ref_name }}
 	$_ -replace "NewVersion", $env:INPUT_TAG `
-	-replace "OldVersion", $Penultimate `
+	-replace "OldVersion", $OldTag `
 	-replace "Sophia_Script_Windows_10_PowerShell_5_1", $JSON.Sophia_Script_Windows_10_PowerShell_5_1 `
 	-replace "Sophia_Script_Windows_10_PowerShell_7", $JSON.Sophia_Script_Windows_10_PowerShell_7 `
 	-replace "Sophia_Script_Windows_10_LTSC2019", $JSON.Sophia_Script_Windows_10_LTSC2019 `

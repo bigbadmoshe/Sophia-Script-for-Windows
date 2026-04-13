@@ -4,7 +4,7 @@ $Parameters = @{
 	UseBasicParsing = $true
 	Verbose         = $true
 }
-$Latest_Release_Windows_11_LTSC2024 = (Invoke-RestMethod @Parameters).Sophia_Script_Windows_11_LTSC2024
+$Latest_Release_Windows_11_LTSC2024 = (Invoke-RestMethod @Parameters).Sophia_Script_Windows_11_LTSC2024_PowerShell_5_1
 
 Write-Verbose -Message "Sophia.Script.for.Windows.11.LTSC.2024.v$Latest_Release_Windows_11_LTSC2024.zip" -Verbose
 

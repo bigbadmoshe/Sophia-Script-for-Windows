@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  download-and-save:
+  download-hevc:
     runs-on: windows-latest
 
     steps:

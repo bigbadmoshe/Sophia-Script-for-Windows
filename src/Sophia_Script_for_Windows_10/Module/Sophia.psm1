@@ -6,7 +6,7 @@
 	6.1.5
 
 	.DATE
-	13.04.2026
+	15.04.2026
 
 	.COPYRIGHT
 	(c) 2014—2026 Team Sophia

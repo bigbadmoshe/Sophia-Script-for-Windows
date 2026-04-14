@@ -167,75 +167,10 @@ switch ((Get-CimInstance -ClassName Win32_OperatingSystem).BuildNumber)
 			$Version = "Windows_10_PowerShell_7"
 		}
 	}
-	{$_ -ge 26100}
+	{$_ -eq 26100}
 	{
 		# Check for Windows 11 LTSC 2024
-		if ((Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name ProductName) -notmatch "LTSC 2024")
-		{
-			# PowerShell 5.1
-			if ($Host.Version.Major -eq 5)
-			{
-				if ((Get-CimInstance -ClassName CIM_Processor).Caption -match "ARM")
-				{
-					# Arm based
-					$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_Arm_PowerShell_5_1
-					$Parameters = @{
-						Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.ARM.v$LatestRelease.zip"
-						OutFile         = "$DownloadsFolder\Sophia.Script.zip"
-						UseBasicParsing = $true
-						Verbose         = $true
-					}
-					Invoke-WebRequest @Parameters
-
-					$Version = "Windows_11_Arm_PowerShell_5_1"
-				}
-				else
-				{
-					$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_PowerShell_5_1
-					$Parameters = @{
-						Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.v$LatestRelease.zip"
-						OutFile         = "$DownloadsFolder\Sophia.Script.zip"
-						UseBasicParsing = $true
-						Verbose         = $true
-					}
-					Invoke-WebRequest @Parameters
-
-					$Version = "Windows_11_PowerShell_5_1"
-				}
-			}
-			else
-			{
-				# PowerShell 7
-				if ((Get-CimInstance -ClassName CIM_Processor).Caption -match "ARM")
-				{
-					# Arm based
-					$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_Arm_PowerShell_7
-					$Parameters = @{
-						Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.ARM.PowerShell.7.v$LatestRelease.zip"
-						OutFile         = "$DownloadsFolder\Sophia.Script.zip"
-						UseBasicParsing = $true
-						Verbose         = $true
-					}
-					Invoke-WebRequest @Parameters
-
-					$Version = "Windows_11_Arm_PowerShell_7"
-				}
-				else
-				{
-					$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_PowerShell_7
-					$Parameters = @{
-						Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.PowerShell.7.v$LatestRelease.zip"
-						OutFile         = "$DownloadsFolder\Sophia.Script.zip"
-						UseBasicParsing = $true
-						Verbose         = $true
-					}
-					Invoke-WebRequest @Parameters
-
-					$Version = "Windows_11_PowerShell_7"
-				}
-			}
-		}
-		else
+		if ((Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name ProductName) -match "LTSC 2024")
 		{
 			# PowerShell 5.1
 			if ($Host.Version.Major -eq 5)
@@ -264,6 +199,90 @@ switch ((Get-CimInstance -ClassName Win32_OperatingSystem).BuildNumber)
 				Invoke-WebRequest @Parameters
 
 				$Version = "Windows_11_LTSC2024_PowerShell_7"
+			}
+		}
+		else
+		{
+			Write-Verbose -Message "Windows version is not supported. Update your Windows and try again." -Verbose
+
+			# Receive updates for other Microsoft products when you update Windows
+			(New-Object -ComObject Microsoft.Update.ServiceManager).AddService2("7971f918-a847-4430-9279-4a52d1efe18d", 7, "")
+
+			# Check for updates
+			& "$env:SystemRoot\System32\UsoClient.exe" StartInteractiveScan
+
+			# Open the "Windows Update" page
+			Start-Process -FilePath "ms-settings:windowsupdate"
+
+			Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
+			Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
+
+			pause
+			exit
+		}
+	}
+	{$_ -ge 26200}
+	{
+		# PowerShell 5.1
+		if ($Host.Version.Major -eq 5)
+		{
+			if ((Get-CimInstance -ClassName CIM_Processor).Caption -match "ARM")
+			{
+				# Arm based
+				$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_Arm_PowerShell_5_1
+				$Parameters = @{
+					Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.ARM.v$LatestRelease.zip"
+					OutFile         = "$DownloadsFolder\Sophia.Script.zip"
+					UseBasicParsing = $true
+					Verbose         = $true
+				}
+				Invoke-WebRequest @Parameters
+
+				$Version = "Windows_11_Arm_PowerShell_5_1"
+			}
+			else
+			{
+				$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_PowerShell_5_1
+				$Parameters = @{
+					Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.v$LatestRelease.zip"
+					OutFile         = "$DownloadsFolder\Sophia.Script.zip"
+					UseBasicParsing = $true
+					Verbose         = $true
+				}
+				Invoke-WebRequest @Parameters
+
+				$Version = "Windows_11_PowerShell_5_1"
+			}
+		}
+		else
+		{
+			# PowerShell 7
+			if ((Get-CimInstance -ClassName CIM_Processor).Caption -match "ARM")
+			{
+				# Arm based
+				$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_Arm_PowerShell_7
+				$Parameters = @{
+					Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.ARM.PowerShell.7.v$LatestRelease.zip"
+					OutFile         = "$DownloadsFolder\Sophia.Script.zip"
+					UseBasicParsing = $true
+					Verbose         = $true
+				}
+				Invoke-WebRequest @Parameters
+
+				$Version = "Windows_11_Arm_PowerShell_7"
+			}
+			else
+			{
+				$LatestRelease = $JSONVersions.Sophia_Script_Windows_11_PowerShell_7
+				$Parameters = @{
+					Uri             = "https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$LatestGitHubRelease/Sophia.Script.for.Windows.11.PowerShell.7.v$LatestRelease.zip"
+					OutFile         = "$DownloadsFolder\Sophia.Script.zip"
+					UseBasicParsing = $true
+					Verbose         = $true
+				}
+				Invoke-WebRequest @Parameters
+
+				$Version = "Windows_11_PowerShell_7"
 			}
 		}
 	}

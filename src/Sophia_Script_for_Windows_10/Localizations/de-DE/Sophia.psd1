@@ -16,6 +16,7 @@ BitLockerInOperation                      = BitLocker ist aktiv. Ihr Laufwerk C 
 BitLockerAutomaticEncryption              = Das Laufwerk C ist verschlüsselt, obwohl BitLocker deaktiviert ist. Möchten Sie Ihr Laufwerk entschlüsseln?
 UnsupportedRelease                        = Eine neuere Version von Sophia Script for Windows gefunden: {0}. Bitte laden Sie die neueste Version herunter.
 KeyboardArrows                            = Bitte verwenden Sie die Pfeiltasten {0} und {1} auf Ihrer Tastatur, um Ihre Antwort auszuwählen
+ESUProgramEnrollment                      = Der Support für Windows 10 endet am 14. Oktober 2025. Ihr PC ist möglicherweise anfällig für Schadsoftware, Trojaner und Zero-Day-Exploits. Möchten Sie sich für das Programm "Consumer Extended Security Updates" (ESU) anmelden, um über TSforge von Microsoft Activation Scripts (MAS) bis 2028 Updates zu erhalten?
 CustomizationWarning                      = Haben Sie alle Funktionen in der voreingestellten Datei {0} angepasst, bevor Sie Sophia Script for Windows ausführen?
 WindowsComponentBroken                    = {0} defekt oder aus dem Betriebssystem entfernt.
 ControlledFolderAccessEnabledWarning      = Sie haben den kontrollierten Ordnerzugriff aktiviert. Bitte deaktivieren Sie ihn und führen Sie das Skript erneut aus.

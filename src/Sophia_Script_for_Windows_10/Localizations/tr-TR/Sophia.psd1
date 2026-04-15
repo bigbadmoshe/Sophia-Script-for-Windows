@@ -16,6 +16,7 @@ BitLockerInOperation                      = BitLocker çalışıyor. C sürücü
 BitLockerAutomaticEncryption              = BitLocker kapalı olmasına rağmen C sürücüsü şifrelenmiştir. Sürücünüzün şifresini çözmek ister misiniz?
 UnsupportedRelease                        = Daha yeni bir Sophia Script for Windows sürümü bulundu: {0}. Lütfen en son sürümü indirin.
 KeyboardArrows                            = Lütfen cevabınızı seçmek için klavyenizdeki {0} ve {1} ok tuşlarını kullanın
+ESUProgramEnrollment                      = Windows 10'un destek süresi 14 Ekim 2025 tarihinde sona ermiştir. Bilgisayarınız kötü amaçlı yazılımlara, truva atlarına ve sıfırıncı gün güvenlik açıklarına karşı savunmasız kalabilir. Microsoft Activation Scripts (MAS) tarafından sunulan TSforge'u kullanarak 2028 yılına kadar güncelleme almak üzere Tüketici Genişletilmiş Güvenlik Güncellemeleri (ESU) programına kaydolmak ister misiniz?
 CustomizationWarning                      = Sophia Script for Windows'i çalıştırmadan önce {0} ön ayar dosyasındaki her işlevi özelleştirdiniz mi?
 WindowsComponentBroken                    = {0} bozuk veya işletim sisteminden kaldırıldı. Yalnızca orijinal bir ISO görüntüsü kullanarak Windows'u yeniden yükleyin.
 ControlledFolderAccessEnabledWarning      = Kontrollü klasör erişimi etkinleştirilmiştir. Lütfen bunu devre dışı bırakın ve komut dosyasını tekrar çalıştırın.

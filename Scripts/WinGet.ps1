@@ -3,7 +3,8 @@ $String = Get-Content -Path "Scripts\WinGet_Manifests\TeamSophia.SophiaScript.ya
 $LocalManifest = $String -split " " | Select-Object -Last 1
 
 # Get latest supported manifest version provided
-# https://github.com/microsoft/winget-cli/tree/main/schemas/JSON/manifests
+# https://github.com/microsoft/winget-cli/tree/master/schemas/JSON/manifests
+# https://github.com/microsoft/winget-pkgs/tree/master/doc/manifest/schema
 $Token = $env:GITHUB_TOKEN
 $Headers = @{
 	Accept        = "application/vnd.github+json"

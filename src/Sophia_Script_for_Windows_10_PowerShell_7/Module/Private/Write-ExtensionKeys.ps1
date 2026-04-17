@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 	Write registry keys for extensions for Set-Association function
 

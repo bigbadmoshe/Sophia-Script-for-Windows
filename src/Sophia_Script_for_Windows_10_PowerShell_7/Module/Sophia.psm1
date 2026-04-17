@@ -7837,7 +7837,7 @@ function Import-Associations
 	https://support.microsoft.com/en-us/windows/how-to-use-the-pc-health-check-app-9c8abd9b-03ba-4e67-81ef-36f37caa7844
 
 	.NOTES
-	This application is installed with the KB5005463 update to сheck whether PC meets the system requirements of Windows 11
+	This application is installed with the KB5005463 update to check whether PC meets the system requirements of Windows 11
 
 	.NOTES
 	Machine-wide
@@ -9437,7 +9437,7 @@ function CleanupTask
 			# Checking if we're trying to create the task when it was already created as another user
 			if (Get-ScheduledTask -TaskPath "\Sophia\" -TaskName "Windows Cleanup" -ErrorAction Ignore)
 			{
-				# Also we can parse "$env:SystemRoot\System32\Tasks\Sophia\Windows Cleanup" to сheck whether the task was created
+				# Also we can parse "$env:SystemRoot\System32\Tasks\Sophia\Windows Cleanup" to check whether the task was created
 				$ScheduleService = New-Object -ComObject Schedule.Service
 				$ScheduleService.Connect()
 				$ScheduleService.GetFolder("\Sophia").GetTasks(0) | Where-Object -FilterScript {$_.Name -eq "Windows Cleanup"} | Foreach-Object {
@@ -9886,7 +9886,7 @@ function SoftwareDistributionTask
 			# Checking if we're trying to create the task when it was already created as another user
 			if (Get-ScheduledTask -TaskPath "\Sophia\" -TaskName SoftwareDistribution -ErrorAction Ignore)
 			{
-				# Also we can parse $env:SystemRoot\System32\Tasks\Sophia\SoftwareDistribution to сheck whether the task was created
+				# Also we can parse $env:SystemRoot\System32\Tasks\Sophia\SoftwareDistribution to check whether the task was created
 				$ScheduleService = New-Object -ComObject Schedule.Service
 				$ScheduleService.Connect()
 				$ScheduleService.GetFolder("\Sophia").GetTasks(0) | Where-Object -FilterScript {$_.Name -eq "SoftwareDistribution"} | Foreach-Object {
@@ -10207,7 +10207,7 @@ function TempTask
 			# Checking if we're trying to create the task when it was already created as another user
 			if (Get-ScheduledTask -TaskPath "\Sophia\" -TaskName Temp -ErrorAction Ignore)
 			{
-				# Also we can parse $env:SystemRoot\System32\Tasks\Sophia\Temp to сheck whether the task was created
+				# Also we can parse $env:SystemRoot\System32\Tasks\Sophia\Temp to check whether the task was created
 				$ScheduleService = New-Object -ComObject Schedule.Service
 				$ScheduleService.Connect()
 				$ScheduleService.GetFolder("\Sophia").GetTasks(0) | Where-Object -FilterScript {$_.Name -eq "Temp"} | Foreach-Object {
@@ -10665,7 +10665,7 @@ function DefenderSandbox
 	The "Process Creation" Event Viewer custom view
 
 	.PARAMETER Enable
-	Create the "Process Creation" сustom view in the Event Viewer to log executed processes and their arguments
+	Create the "Process Creation" custom view in the Event Viewer to log executed processes and their arguments
 
 	.PARAMETER Disable
 	Remove the "Process Creation" custom view in the Event Viewer

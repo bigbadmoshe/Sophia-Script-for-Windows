@@ -1,4 +1,4 @@
-<#
+﻿<#
 	.SYNOPSIS
 	Initial checks before proceeding to module execution
 

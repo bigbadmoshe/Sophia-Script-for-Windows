@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 	Create pre-configured text files for LGPO.exe tool
 

@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 	Default preset file for "Sophia Script for Windows 11 LTSC 2024 (PowerShell 7)"
 

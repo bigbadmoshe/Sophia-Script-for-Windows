@@ -1,4 +1,4 @@
-<#
+﻿<#
 	.SYNOPSIS
 	Change the location of the each user folder using SHSetKnownFolderPath function
 

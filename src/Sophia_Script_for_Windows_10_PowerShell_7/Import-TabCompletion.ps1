@@ -1,4 +1,4 @@
-<#
+﻿<#
 	.SYNOPSIS
 	Enable tab completion to invoke for functions if you do not know function name
 

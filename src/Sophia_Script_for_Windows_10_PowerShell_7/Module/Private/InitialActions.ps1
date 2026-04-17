@@ -929,10 +929,11 @@ public extern static string BrandingFormatString(string sFormat);
 			Write-Verbose -Message "https://support.microsoft.com/windows/windows-10-support-has-ended-on-october-14-2025-2ca8b313-1946-43d3-b55c-2b95b107f281" -Verbose
 			Write-Verbose -Message "https://learn.microsoft.com/lifecycle/faq/extended-security-updates" -Verbose
 			Write-Verbose -Message "https://massgrave.dev" -Verbose
+			Write-Verbose -Message "https://github.com/abbodi1406/ConsumerESU" -Verbose
 
 			do
 			{
-				$Choice = Show-Menu -Menu @($Yes, $No) -Default 2
+				$Choice = Show-Menu -Menu @($Yes, $No) -Default 1
 
 				switch ($Choice)
 				{

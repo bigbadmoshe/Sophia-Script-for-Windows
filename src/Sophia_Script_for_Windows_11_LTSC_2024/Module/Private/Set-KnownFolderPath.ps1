@@ -1,4 +1,4 @@
-<#
+﻿<#
 	.SYNOPSIS
 	Redirect user folders to a new location
 

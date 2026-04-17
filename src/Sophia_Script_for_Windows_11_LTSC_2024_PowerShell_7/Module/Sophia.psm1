@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 	Sophia Script is a PowerShell module for fine-tuning Windows and automating routine tasks
 

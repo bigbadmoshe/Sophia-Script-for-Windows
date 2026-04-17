@@ -1,4 +1,4 @@
-﻿@{
+@{
 	RootModule            = '..\Module\Sophia.psm1'
 	ModuleVersion         = '6.1.5'
 	GUID                  = '109cc881-c42b-45af-a74a-550781989d6a'

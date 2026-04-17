@@ -1,4 +1,4 @@
-<#
+﻿<#
 	.SYNOPSIS
 	Calculate hash for Set-Association function
 

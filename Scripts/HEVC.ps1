@@ -14,6 +14,7 @@ try
 	}
 	$Parameters = @{
 		Uri             = "https://store.rg-adguard.net"
+		Headers         = $Headers
 		UseBasicParsing = $true
 	}
 	Invoke-WebRequest @Parameters | Out-Null

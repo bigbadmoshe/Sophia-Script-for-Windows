@@ -211,8 +211,8 @@ function DiagnosticDataLevel
 		{
 			# Optional diagnostic data
 			New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name MaxTelemetryAllowed -PropertyType DWord -Value 3 -Force
-			New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack -Name ShowedToastAtLevel -PropertyType DWord -Value 3 -Force
 			New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -PropertyType DWord -Value 3 -Force
+			New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack -Name ShowedToastAtLevel -PropertyType DWord -Value 3 -Force
 		}
 	}
 }
@@ -7614,26 +7614,26 @@ function CleanupTask
 			Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows Script Host\Settings", "HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings" -Name Enabled -Force -ErrorAction Ignore
 
 			# Checking whether VBS engine is enabled
-			if ((Get-WindowsCapability -Online -Name VBSCRIPT*).State -ne "Installed")
+			try
 			{
-				try
+				if ((Get-WindowsCapability -Online -Name VBSCRIPT* -ErrorAction Stop).State -ne "Installed")
 				{
-					Get-WindowsCapability -Online -Name VBSCRIPT* | Add-WindowsCapability -Online
+					Get-WindowsCapability -Online -Name VBSCRIPT* -ErrorAction Stop | Add-WindowsCapability -Online -ErrorAction Stop
 				}
-				catch
-				{
-					Write-Information -MessageData "" -InformationAction Continue
-					Write-Warning -Message ($Localization.WindowsComponentBroken -f (Get-WindowsCapability -Online -Name VBSCRIPT*).DisplayName)
-					Write-Information -MessageData "" -InformationAction Continue
+			}
+			catch
+			{
+				Write-Information -MessageData "" -InformationAction Continue
+				Write-Warning -Message (($Localization.WindowsComponentStabilityDisrupted -f "VBScript"), $Localization.ReinstallWindowsWarning -join " ")
+				Write-Information -MessageData "" -InformationAction Continue
 
-					Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
-					Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
-					Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
+				Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
+				Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
+				Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
 
-					$Global:Failed = $true
+				$Global:Failed = $true
 
-					exit
-				}
+				exit
 			}
 
 			# Checking if we're trying to create the task when it was already created as another user
@@ -8089,26 +8089,26 @@ function SoftwareDistributionTask
 			Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows Script Host\Settings", "HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings" -Name Enabled -Force -ErrorAction Ignore
 
 			# Checking whether VBS engine is enabled
-			if ((Get-WindowsCapability -Online -Name VBSCRIPT*).State -ne "Installed")
+			try
 			{
-				try
+				if ((Get-WindowsCapability -Online -Name VBSCRIPT* -ErrorAction Stop).State -ne "Installed")
 				{
-					Get-WindowsCapability -Online -Name VBSCRIPT* | Add-WindowsCapability -Online
+					Get-WindowsCapability -Online -Name VBSCRIPT* -ErrorAction Stop | Add-WindowsCapability -Online -ErrorAction Stop
 				}
-				catch
-				{
-					Write-Information -MessageData "" -InformationAction Continue
-					Write-Warning -Message ($Localization.WindowsComponentBroken -f (Get-WindowsCapability -Online -Name VBSCRIPT*).DisplayName)
-					Write-Information -MessageData "" -InformationAction Continue
+			}
+			catch
+			{
+				Write-Information -MessageData "" -InformationAction Continue
+				Write-Warning -Message (($Localization.WindowsComponentStabilityDisrupted -f "VBScript"), $Localization.ReinstallWindowsWarning -join " ")
+				Write-Information -MessageData "" -InformationAction Continue
 
-					Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
-					Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
-					Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
+				Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
+				Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
+				Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
 
-					$Global:Failed = $true
+				$Global:Failed = $true
 
-					exit
-				}
+				exit
 			}
 
 			# Checking if we're trying to create the task when it was already created as another user
@@ -8436,26 +8436,26 @@ function TempTask
 			Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows Script Host\Settings", "HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings" -Name Enabled -Force -ErrorAction Ignore
 
 			# Checking whether VBS engine is enabled
-			if ((Get-WindowsCapability -Online -Name VBSCRIPT*).State -ne "Installed")
+			try
 			{
-				try
+				if ((Get-WindowsCapability -Online -Name VBSCRIPT* -ErrorAction Stop).State -ne "Installed")
 				{
-					Get-WindowsCapability -Online -Name VBSCRIPT* | Add-WindowsCapability -Online
+					Get-WindowsCapability -Online -Name VBSCRIPT* -ErrorAction Stop | Add-WindowsCapability -Online -ErrorAction Stop
 				}
-				catch
-				{
-					Write-Information -MessageData "" -InformationAction Continue
-					Write-Warning -Message ($Localization.WindowsComponentBroken -f (Get-WindowsCapability -Online -Name VBSCRIPT*).DisplayName)
-					Write-Information -MessageData "" -InformationAction Continue
+			}
+			catch
+			{
+				Write-Information -MessageData "" -InformationAction Continue
+				Write-Warning -Message (($Localization.WindowsComponentStabilityDisrupted -f "VBScript"), $Localization.ReinstallWindowsWarning -join " ")
+				Write-Information -MessageData "" -InformationAction Continue
 
-					Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
-					Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
-					Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
+				Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
+				Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
+				Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
 
-					$Global:Failed = $true
+				$Global:Failed = $true
 
-					exit
-				}
+				exit
 			}
 
 			# Checking if we're trying to create the task when it was already created as another user

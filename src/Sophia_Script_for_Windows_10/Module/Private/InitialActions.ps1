@@ -216,7 +216,7 @@ public static string GetIndirectString(string indirectString)
 		catch
 		{
 			Write-Information -MessageData "" -InformationAction Continue
-			Write-Warning -Message $Localization.CodeCompilationFailedWarning
+			Write-Warning -Message ($Localization.CodeCompilationFailedWarning, $Localization.ReinstallWindowsWarning -join " ")
 			Write-Information -MessageData "" -InformationAction Continue
 
 			Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
@@ -252,7 +252,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 		catch
 		{
 			Write-Information -MessageData "" -InformationAction Continue
-			Write-Warning -Message $Localization.CodeCompilationFailedWarning
+			Write-Warning -Message ($Localization.CodeCompilationFailedWarning, $Localization.ReinstallWindowsWarning -join " ")
 			Write-Information -MessageData "" -InformationAction Continue
 
 			Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
@@ -367,7 +367,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 			if ($Tweakers[$Tweaker] -eq "HKCU:\Software\Win 10 Tweaker")
 			{
 				Write-Information -MessageData "" -InformationAction Continue
-				Write-Warning -Message $Localization.Win10TweakerWarning
+				Write-Warning -Message ($Localization.Win10TweakerWarning, $Localization.ReinstallWindowsWarning -join " ")
 				Write-Information -MessageData "" -InformationAction Continue
 
 				Write-Verbose -Message "https://youtu.be/na93MS-1EkM" -Verbose
@@ -382,7 +382,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 			}
 
 			Write-Information -MessageData "" -InformationAction Continue
-			Write-Warning -Message ($Localization.TweakerWarning -f $Tweaker)
+			Write-Warning -Message (($Localization.TweakerWarning -f $Tweaker), $Localization.ReinstallWindowsWarning -join " ")
 			Write-Information -MessageData "" -InformationAction Continue
 
 			Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
@@ -407,7 +407,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 		if ($Tweakers[$Tweaker])
 		{
 			Write-Information -MessageData "" -InformationAction Continue
-			Write-Warning -Message ($Localization.TweakerWarning -f $Tweaker)
+			Write-Warning -Message (($Localization.TweakerWarning -f $Tweaker), $Localization.ReinstallWindowsWarning -join " ")
 			Write-Information -MessageData "" -InformationAction Continue
 
 			Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
@@ -468,7 +468,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 	{
 		Write-Information -MessageData "" -InformationAction Continue
 		# Extract the localized "Event Viewer" string from %SystemRoot%\System32\shell32.dll
-		Write-Warning -Message ($Localization.WindowsComponentBroken -f $([WinAPI.GetStrings]::GetString(22029)))
+		Write-Warning -Message (($Localization.WindowsComponentStabilityDisrupted -f $([WinAPI.GetStrings]::GetString(22029))), $Localization.ReinstallWindowsWarning -join " ")
 		Write-Information -MessageData "" -InformationAction Continue
 
 		Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
@@ -480,72 +480,46 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 		exit
 	}
 
-	# Checking whether the Microsoft Store and Windows Feature Experience Pack was removed
-	$UWPComponents = [Array]::TrueForAll(@(
-		"Microsoft.WindowsStore",
-		"MicrosoftWindows.Client.CBS"
-	),
-	[Predicate[string]]{
-		param($UWPComponent)
+	# Checking whether the Microsoft Store or Windows Feature Experience Pack was removed
+	@("Microsoft.WindowsStore", "MicrosoftWindows.Client.CBS") | ForEach-Object -Process {
+		if (-not (Get-AppxPackage -Name $_))
+		{
+			Write-Information -MessageData "" -InformationAction Continue
+			Write-Warning -Message (($Localization.UWPComponentsMissing -f $_), $Localization.ReinstallWindowsWarning -join " ")
+			Write-Information -MessageData "" -InformationAction Continue
 
-		Get-AppxPackage -Name $UWPComponent
-	})
-	if (-not $UWPComponents)
-	{
-		Write-Information -MessageData "" -InformationAction Continue
-		Write-Warning -Message ($Localization.WindowsComponentBroken -f "UWP")
-		Write-Information -MessageData "" -InformationAction Continue
+			Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
+			Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
+			Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
 
-		Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
-		Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
-		Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
+			$Global:Failed = $true
 
-		$Global:Failed = $true
-
-		exit
+			exit
+		}
 	}
 
 	#region Defender checks
-	# Checking whether necessary Microsoft Defender components exists
-	$Files = [Array]::TrueForAll(@(
+	# Checking whether necessary Microsoft Defender components exist
+	$DefenderFiles = @(
 		"$env:SystemRoot\System32\smartscreen.exe",
 		"$env:SystemRoot\System32\SecurityHealthSystray.exe",
 		"$env:SystemRoot\System32\CompatTelRunner.exe"
-	),
-	[Predicate[string]]{
-		param($File)
+	)
+	$DefenderFiles| ForEach-Object -Process {
+		if (-not (Test-Path -Path $_))
+		{
+			Write-Information -MessageData "" -InformationAction Continue
+			Write-Warning -Message (($Localization.DefenderComponentsMissing -f $_), $Localization.ReinstallWindowsWarning -join " ")
+			Write-Information -MessageData "" -InformationAction Continue
 
-		Test-Path -Path $File
-	})
-	if (-not $Files)
-	{
-		Write-Information -MessageData "" -InformationAction Continue
-		Write-Warning -Message ($Localization.WindowsComponentBroken -f "Microsoft Defender")
-		Write-Information -MessageData "" -InformationAction Continue
+			Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
+			Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
+			Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
 
-		Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
-		Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
-		Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
+			$Global:Failed = $true
 
-		$Global:Failed = $true
-
-		exit
-	}
-
-	# Checking whether Windows Security Settings page was hidden from UI
-	if ((Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer -Name SettingsPageVisibility -ErrorAction Ignore) -match "hide:windowsdefender")
-	{
-		Write-Information -MessageData "" -InformationAction Continue
-		Write-Warning -Message ($Localization.WindowsComponentBroken -f "Microsoft Defender")
-		Write-Information -MessageData "" -InformationAction Continue
-
-		Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
-		Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
-		Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
-
-		$Global:Failed = $true
-
-		exit
+			exit
+		}
 	}
 
 	# Checking Microsoft Defender properties
@@ -553,6 +527,7 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 	{
 		$AntiVirusProduct = @(
 			Get-Service -Name Windefend, SecurityHealthService, wscsvc, wdFilter -ErrorAction Stop
+			Get-Service -Name SecurityHealthService -ErrorAction Stop | Start-Service -ErrorAction Stop
 			Get-CimInstance -ClassName MSFT_MpComputerStatus -Namespace root/Microsoft/Windows/Defender -ErrorAction Stop
 			Get-CimInstance -ClassName AntiVirusProduct -Namespace root/SecurityCenter2 -ErrorAction Stop
 			Get-MpPreference -ErrorAction Stop
@@ -561,35 +536,18 @@ public static extern bool SetForegroundWindow(IntPtr hWnd);
 	catch
 	{
 		Write-Information -MessageData "" -InformationAction Continue
-		Write-Warning -Message ($Localization.WindowsComponentBroken -f "Microsoft Defender")
+		Write-Warning -Message (($Localization.WindowsComponentStabilityDisrupted -f "Microsoft Defender"), $Localization.ReinstallWindowsWarning -join " ")
+
+		# Get the exact string where script failed
+		$_.InvocationInfo.Line.Trim()
 		Write-Information -MessageData "" -InformationAction Continue
 
 		# Try to display available AVs
 		try
 		{
-			Get-CimInstance -ClassName AntiVirusProduct -Namespace root/SecurityCenter2
+			Get-CimInstance -ClassName AntiVirusProduct -Namespace root/SecurityCenter2 -ErrorAction Stop
 		}
 		catch {}
-
-		Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
-		Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
-		Write-Verbose -Message "https://discord.gg/sSryhaEv79" -Verbose
-
-		$Global:Failed = $true
-
-		exit
-	}
-
-	# Check SecurityHealthService service
-	try
-	{
-		Get-Service -Name SecurityHealthService -ErrorAction Stop | Start-Service -ErrorAction Stop
-	}
-	catch
-	{
-		Write-Information -MessageData "" -InformationAction Continue
-		Write-Warning -Message ($Localization.WindowsComponentBroken -f "Microsoft Defender")
-		Write-Information -MessageData "" -InformationAction Continue
 
 		Write-Verbose -Message "https://massgrave.dev/genuine-installation-media" -Verbose
 		Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
@@ -750,7 +708,7 @@ public extern static string BrandingFormatString(string sFormat);
 		catch
 		{
 			Write-Information -MessageData "" -InformationAction Continue
-			Write-Warning -Message $Localization.CodeCompilationFailedWarning
+			Write-Warning -Message ($Localization.CodeCompilationFailedWarning, $Localization.ReinstallWindowsWarning -join " ")
 			Write-Information -MessageData "" -InformationAction Continue
 
 			Write-Verbose -Message "https://t.me/sophia_chat" -Verbose
@@ -889,7 +847,8 @@ public extern static string BrandingFormatString(string sFormat);
 			Write-Information -MessageData "" -InformationAction Continue
 			Write-Verbose -Message "https://support.microsoft.com/windows/windows-10-support-has-ended-on-october-14-2025-2ca8b313-1946-43d3-b55c-2b95b107f281" -Verbose
 			Write-Verbose -Message "https://learn.microsoft.com/lifecycle/faq/extended-security-updates" -Verbose
-			Write-Verbose -Message "https://massgrave.dev" -Verbose
+			Write-Information -MessageData "" -InformationAction Continue
+			Write-Verbose -Message "https://massgrave.dev/windows10_eol" -Verbose
 			Write-Verbose -Message "https://github.com/abbodi1406/ConsumerESU" -Verbose
 
 			do
@@ -900,7 +859,8 @@ public extern static string BrandingFormatString(string sFormat);
 				{
 					$Yes
 					{
-						Start-Process -FilePath "https://massgrave.dev"
+						Start-Process -FilePath "https://massgrave.dev/windows10_eol"
+						Start-Process -FilePath "https://github.com/abbodi1406/ConsumerESU"
 					}
 					$No
 					{
